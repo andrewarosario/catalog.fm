@@ -1,23 +1,34 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src/",
+    "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@core": ["app/core"],
+      "@core/*": ["app/core/*"],
+      "@shared": ["app/shared"],
+      "@shared/*": ["app/shared/*"],
+      "@theme": ["app/theme"],
+      "@theme/*": ["app/theme/*"],
+      "@lastfm": ["app/lastfm"],
+      "@lastfm/*": ["app/lastfm/*"],
+      "@indexed-db": ["app/indexed-db"],
+      "@indexed-db/*": ["app/indexed-db/*"],
+      "@testing": ["testing"],
+      "@testing/*": ["testing/*"],
+      "@env": ["environments"],
+      "@env/*": ["environments/*"]
+    }
   }
 }

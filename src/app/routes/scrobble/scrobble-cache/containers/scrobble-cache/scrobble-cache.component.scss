@@ -1,0 +1,14 @@
+.actions {
+  display: flex;
+}
+
+.actions-scrobble-all {
+  flex-grow: 2;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.actions-clear {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}

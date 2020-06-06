@@ -1,0 +1,28 @@
+<page-header title="Realizar Scrobbles em Bulk (Linha)"></page-header>
+
+<form [formGroup]="scrobbleForm" (submit)="scrobble()">
+  <mat-form-field>
+    <mat-label>Descreva em cada linha o artista, a música e o álbum separados por hífen (-)</mat-label>
+    <textarea
+      matInput
+      autofocus
+      formControlName="textScrobble"
+      rows="20"
+      placeholder="Exemplo:
+Pink Floyd - Time - The Dark Side of the Moon
+Radiohead - Paranoid Android - Ok Computer
+Porcupine Tree - Trains"
+    >
+    </textarea>
+  </mat-form-field>
+
+  <div class="button-form">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="scrobbleForm.invalid || loadingRequest">
+      {{ loadingRequest ? 'Enviando...' : 'Enviar Scrobbles' }}</button>
+  </div>
+</form>
+

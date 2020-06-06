@@ -1,18 +1,62 @@
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { ThemeModule } from './theme/theme.module';
+import { RoutesModule } from './routes/routes.module';
 import { AppComponent } from './app.component';
 
+import { DefaultInterceptor } from '@core';
+import { StartupService } from '@core';
+export function StartupServiceFactory(startupService: StartupService) {
+  return () => startupService.load();
+}
+
+import { FormlyModule } from '@ngx-formly/core';
+import { ToastrModule } from 'ngx-toastr';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+// Required for AOT compilation
+export function TranslateHttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    CoreModule,
+    SharedModule,
+    ThemeModule,
+    RoutesModule,
+    FormlyModule.forRoot(),
+    ToastrModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: TranslateHttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
+    StartupService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: StartupServiceFactory,
+      deps: [StartupService],
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

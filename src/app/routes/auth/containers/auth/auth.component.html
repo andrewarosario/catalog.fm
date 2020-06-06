@@ -1,0 +1,22 @@
+<div *ngIf="waitingCallback | async; else content">
+  <div class="callback">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="callback">
+    <span>Realizando autenticação...</span>
+  </div>
+</div>
+
+
+<ng-template #content>
+  <h2>Bem-vind@ ao Catalog.fm!</h2>
+  <div class="button-auth">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="login()">
+      <mat-icon class="icon-lastfm" svgIcon="lastfm"></mat-icon>
+      Autenticar na Last.fm
+    </button>
+  </div>
+</ng-template>

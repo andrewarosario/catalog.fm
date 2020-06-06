@@ -1,0 +1,25 @@
+{
+  "menu": [
+    {
+      "route": "scrobble",
+      "name": "Scrobble",
+      "type": "sub",
+      "icon": "send",
+      "children": [{
+          "route": "bulk",
+          "name": "Bulk",
+          "type": "link"
+        },
+        {
+          "route": "cache",
+          "name": "Cache",
+          "type": "link",
+          "badge": {
+            "color": "red-500",
+            "value": "2"
+          }
+        }
+      ]
+    }
+  ]
+}
