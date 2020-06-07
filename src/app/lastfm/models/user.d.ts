@@ -1,4 +1,4 @@
-interface User {
+interface UserLastfm {
   type: 'user';
   id?: string;
   name: string;
@@ -25,8 +25,8 @@ interface AuthenticationResponse {
   };
 }
 
-interface UserResponse {
-  user: User;
+interface UserLastfmResponse {
+  user: UserLastfm;
 }
 
 interface RecentTracks {
