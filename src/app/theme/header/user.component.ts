@@ -10,7 +10,7 @@ import { User } from '@core/models/user';
       href="javascript:void(0)"
       [matMenuTriggerFor]="menu"
     >
-      <img class="matero-avatar" [src]="user.profile.image" width="32" alt="avatar" />
+      <img *ngIf="user.profile" class="matero-avatar" [src]="user.profile?.image" width="32" alt="avatar" />
       <span class="matero-username" fxHide.lt-sm>{{ user.name }}</span>
     </button>
 
