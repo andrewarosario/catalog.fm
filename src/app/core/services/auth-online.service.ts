@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OnlineOfflineService } from './online-offline.service';
+import { OnlineOfflineService } from '../bootstrap/online-offline.service';
 import { UserService } from './user.service';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
