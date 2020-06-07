@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
 
 import { MenuService } from './menu.service';
 import { IconsService } from '@core/bootstrap/icons.service';
-import { ScrobbleService } from 'app/routes/scrobble/services/scrobble.service';
+import { ScrobbleService } from '@shared/services/usecases/scrobble.service';
 import { ResourcesService } from './resources.service';
 
 @Injectable()

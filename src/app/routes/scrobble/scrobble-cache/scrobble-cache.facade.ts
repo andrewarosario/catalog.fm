@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ScrobbleService } from '../services/scrobble.service';
+import { ScrobbleService } from '../../../shared/services/usecases/scrobble.service';
 import { IndexedDbScrobbles } from '@indexed-db/tables/indexed-db-scrobbles';
 import { tap } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';

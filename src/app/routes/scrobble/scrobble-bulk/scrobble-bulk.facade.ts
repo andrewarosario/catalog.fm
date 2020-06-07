@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
-import { ScrobbleService } from '../services/scrobble.service';
+import { ScrobbleService } from '../../../shared/services/usecases/scrobble.service';
 import { map } from 'rxjs/operators';
 import { ScrobbleResponseType } from '@core/models/scrobble-response-type';
 
