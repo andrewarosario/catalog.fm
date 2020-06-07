@@ -34,6 +34,11 @@ const routes: Routes = [
         loadChildren: () => import('./scrobble/scrobble.module').then(m => m.ScrobbleModule),
         data: { title: 'Scrobble', titleI18n: 'Scrobble' },
       },
+      {
+        path: 'mosaic',
+        loadChildren: () => import('./mosaic/mosaic.module').then(m => m.ScrobbleModule),
+        data: { title: 'Mosaico', titleI18n: 'Mosaico' },
+      },
     ],
   },
   /* {
