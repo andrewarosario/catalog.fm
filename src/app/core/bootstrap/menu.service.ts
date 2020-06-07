@@ -4,13 +4,14 @@ import { Observable } from 'rxjs/internal/Observable';
 
 export interface MenuTag {
   color: string; // Background Color
-  value: string;
+  value: Observable<any>;
 }
 
 export interface MenuChildrenItem {
   route: string;
   name: string;
   type: 'link' | 'sub' | 'extLink' | 'extTabLink';
+  badge?: MenuTag;
   children?: MenuChildrenItem[];
 }
 

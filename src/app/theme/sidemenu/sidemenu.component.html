@@ -12,7 +12,7 @@
       </span>
       <span fxFlex></span>
       <span class="menu-badge bg-{{menuItem.badge.color}}" *ngIf="menuItem.badge">
-        {{menuItem.badge.value}}
+        {{menuItem.badge.value | async}}
       </span>
     </a>
     <a class="matero-sidemenu-link" [href]="menuItem.route" *ngIf="menuItem.type === 'extLink'"
@@ -24,7 +24,7 @@
       </span>
       <span fxFlex></span>
       <span class="menu-badge bg-{{menuItem.badge.color}}" *ngIf="menuItem.badge">
-        {{menuItem.badge.value}}
+        {{menuItem.badge.value | async}}
       </span>
       <mat-icon class="menu-caret">launch</mat-icon>
     </a>
@@ -38,7 +38,7 @@
       </span>
       <span fxFlex></span>
       <span class="menu-badge bg-{{menuItem.badge.color}}" *ngIf="menuItem.badge">
-        {{menuItem.badge.value}}
+        {{menuItem.badge.value | async}}
       </span>
       <mat-icon class="menu-caret">launch</mat-icon>
     </a>
@@ -53,7 +53,7 @@
       </span>
       <span fxFlex></span>
       <span class="menu-badge bg-{{menuItem.badge.color}}" *ngIf="menuItem.badge">
-        {{menuItem.badge.value}}
+        {{menuItem.badge.value | async}}
       </span>
       <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
     </a>
@@ -66,12 +66,23 @@
            *ngIf="childLvl1.type === 'link'"
            matRipple [matRippleDisabled]="!ripple">
           <span class="menu-name">{{childLvl1.name | translate}}</span>
+          <span fxFlex></span>
+          <span
+            class="menu-badge bg-{{childLvl1.badge.color}}"
+            *ngIf="childLvl1.badge && childLvl1.badge.value | async as badgeValue">
+            {{ badgeValue }}
+          </span>
         </a>
         <a class="matero-sidemenu-link" [href]="childLvl1.route"
            *ngIf="childLvl1.type === 'extLink'"
            matRipple [matRippleDisabled]="!ripple">
           <span class="menu-name">{{childLvl1.name | translate}}</span>
           <span fxFlex></span>
+          <span
+            class="menu-badge bg-{{childLvl1.badge.color}}"
+            *ngIf="childLvl1.badge && childLvl1.badge.value | async as badgeValue">
+            {{ badgeValue }}
+          </span>
           <mat-icon class="menu-caret">launch</mat-icon>
         </a>
         <a class="matero-sidemenu-link" [href]="childLvl1.route" target="_blank"
@@ -79,6 +90,9 @@
            matRipple [matRippleDisabled]="!ripple">
           <span class="menu-name">{{childLvl1.name | translate}}</span>
           <span fxFlex></span>
+          <span class="menu-badge bg-{{childLvl1.badge.color}}" *ngIf="childLvl1.badge">
+            {{childLvl1.badge.value | async}}
+          </span>
           <mat-icon class="menu-caret">launch</mat-icon>
         </a>
         <!-- level 2 -->

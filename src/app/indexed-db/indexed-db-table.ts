@@ -2,6 +2,7 @@ import { Injector } from '@angular/core';
 import { from, BehaviorSubject } from 'rxjs';
 import { IndexedDbService } from './indexed-db.service';
 import { uuid } from '@shared/helpers/uuid';
+import { map } from 'rxjs/operators';
 
 export class IndexedDbTable<T extends {id?: string}> {
 
@@ -17,6 +18,10 @@ export class IndexedDbTable<T extends {id?: string}> {
     this.db = injector.get(IndexedDbService);
     this.createTable(tableName);
     this.getAll().subscribe(data => this.tableSubject$.next(data));
+  }
+
+  public get length$() {
+    return this.collection$.pipe(map(table => table.length));
   }
 
   public getTable() {
