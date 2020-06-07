@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
+import { Profile } from '@core/models/profile';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,12 @@ export class UserService {
 
   public setUser(user: User) {
     this.userSubject$.next(user);
+  }
+
+  public setUserProfile(profile: Profile): User {
+    const user = { ...this.user, profile };
+    this.setUser(user);
+    return user;
   }
 
 }

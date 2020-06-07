@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { LastfmAuthService } from '../../lastfm/services/lastfm-auth.service';
 import { UserService } from './user.service';
-import { tap } from 'rxjs/operators';
+import { tap, switchMap, map } from 'rxjs/operators';
 import { LocalStorageService } from './local-storage.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
-import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
+import { ProfileService } from '@shared/services/usecases/profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(
     private lastfmAuthService: LastfmAuthService,
-    private lastfmUserService: LastfmUserService,
+    private profileService: ProfileService,
     private userService: UserService,
     private localStorageService: LocalStorageService,
     private router: Router,
@@ -30,8 +30,11 @@ export class AuthService {
   public authenticate(token: string) {
     return this.lastfmAuthService.authenticate(token)
       .pipe(
+        tap(authResponse => this.userService.setUser(authResponse.session)),
         tap(authResponse => this.localStorageService.setKey('x-access-token', JSON.stringify(authResponse.session))),
-        tap(authResponse => this.userService.setUser(authResponse.session))
+        switchMap(authResponse => this.profileService.get(authResponse.session.name)),
+        map(profile => this.userService.setUserProfile(profile)),
+        tap(user => this.localStorageService.setKey('x-access-token', JSON.stringify(user)))
       );
   }
 
@@ -40,7 +43,6 @@ export class AuthService {
     if (token) {
       const decodedToken = JSON.parse(token) as User;
       this.userService.setUser(decodedToken);
-      this.lastfmUserService.getInfo(this.userService.user.name).subscribe(console.log);
       return decodedToken;
     }
     return null;
