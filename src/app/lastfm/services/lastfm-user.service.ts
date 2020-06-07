@@ -13,14 +13,14 @@ export class LastfmUserService {
     private lastfmService: LastfmService,
   ) { }
 
-  public getInfo(user: string): Observable<UserResponse> {
+  public getInfo(user: string): Observable<UserLastfmResponse> {
 
     const lastfmResponse: LastfmHttp = {
       method: 'user.getInfo',
       data: { user }
     };
 
-    return this.lastfmService.get<UserResponse>(lastfmResponse);
+    return this.lastfmService.get<UserLastfmResponse>(lastfmResponse);
   }
 
   public getUserRecentTracks(user: string, page = 1): Observable<any> {

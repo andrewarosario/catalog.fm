@@ -6,6 +6,7 @@ import { LocalStorageService } from './local-storage.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
+import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
 
   constructor(
     private lastfmAuthService: LastfmAuthService,
+    private lastfmUserService: LastfmUserService,
     private userService: UserService,
     private localStorageService: LocalStorageService,
     private router: Router,
@@ -38,6 +40,7 @@ export class AuthService {
     if (token) {
       const decodedToken = JSON.parse(token) as User;
       this.userService.setUser(decodedToken);
+      this.lastfmUserService.getInfo(this.userService.user.name).subscribe(console.log);
       return decodedToken;
     }
     return null;
