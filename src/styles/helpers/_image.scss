@@ -9,3 +9,9 @@
 .fit-contain {
   @include image-fit(contain);
 }
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

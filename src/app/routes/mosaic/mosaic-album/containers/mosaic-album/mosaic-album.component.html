@@ -1,1 +1,37 @@
-<p>mosaic-album works!</p>
+<page-header title="Gerador de Mosaicos de Álbuns"></page-header>
+
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Período</ng-template>
+      <mat-form-field>
+        <mat-label>Selecione o período</mat-label>
+        <mat-select formControlName="period" name="period">
+          <mat-option *ngFor="let period of periods" [value]="period.value">{{ period.text }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Tamanho</ng-template>
+      <mat-form-field>
+        <mat-label>Selecione o tamanho do mosaico</mat-label>
+        <mat-select formControlName="size" name="sizes">
+          <mat-option *ngFor="let size of sizes" [value]="size.value">{{ size.text }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button (click)="stepper.reset()">Voltar</button>
+        <button mat-button [disabled]="secondFormGroup.invalid" (click)="generate()">Gerar</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<div id="generated">
+  <canvas #canvasElement crossorigin="Anonymous" id="canvas"></canvas>
+</div>

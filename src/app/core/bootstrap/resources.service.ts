@@ -32,6 +32,12 @@ export class ResourcesService {
               }
             }
           ]
+        },
+        {
+          route: 'mosaic/album',
+          name: 'Mosaico',
+          type: 'link',
+          icon: 'grid_on'
         }
       ];
     }
