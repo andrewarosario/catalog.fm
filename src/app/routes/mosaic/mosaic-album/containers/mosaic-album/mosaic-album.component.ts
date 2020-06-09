@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
-import { UserService } from '@core/services/user.service';
-import { ProfileService } from '@shared/services/usecases/profile.service';
-import { map, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PERIODS_LAST_FM, PeriodLastfm } from '@core/models/periods';
+import { MosaicAlbumFacade } from '../../mosaic-album.facade';
 
 let downloaded = 0;
 const IMAGE_SIZE = 174;
@@ -33,8 +31,7 @@ export class MosaicAlbumComponent implements OnInit, AfterViewInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
-    private profileService: ProfileService,
+    private facade: MosaicAlbumFacade
   ) { }
 
   ngOnInit(): void {
@@ -58,8 +55,8 @@ export class MosaicAlbumComponent implements OnInit, AfterViewInit {
     if (canvasImg) {
       canvasImg.remove();
     }
-    this.canvas.width = IMAGE_SIZE * this.getNumCols();
-    this.canvas.height = IMAGE_SIZE * this.getNumCols();
+    this.canvas.width = IMAGE_SIZE * this.numCols;
+    this.canvas.height = IMAGE_SIZE * this.numCols;
     this.context.fillStyle = 'black';
 
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -67,24 +64,20 @@ export class MosaicAlbumComponent implements OnInit, AfterViewInit {
   }
 
   public callApi() {
-    this.profileService
-      .getTopAlbums(this.userService.user.name, 1, this.size, this.period)
-      .pipe(
-        map(res => res.album),
-        map(albums => albums.map(album => album.image['2']['#text'])),
-      ).subscribe(links => this.makeMosaic(links));
+    this.facade.getImageAlbums(this.size, this.period)
+      .subscribe(links => this.makeMosaic(links));
   }
 
   private makeMosaic(links: string[]) {
 
-    for (let i = 0, k = 0; i < this.getNumCols(); i++) {
-      for (let j = 0; j < this.getNumCols(); j++, k++) {
-          this.loadImage(links[k], j, i);
+    for (let colX = 0, posLink = 0; colX < this.numCols; colX++) {
+      for (let colY = 0; colY < this.numCols; colY++, posLink++) {
+          this.loadImage(links[posLink], colY, colX);
       }
     }
   }
 
-  private loadImage(link, i, j) {
+  private loadImage(link: string, colX: number, colY: number) {
     const img = new Image(IMAGE_SIZE, IMAGE_SIZE);
     img.crossOrigin = 'Anonymous';
     img.classList.add('img-responsive');
@@ -93,7 +86,7 @@ export class MosaicAlbumComponent implements OnInit, AfterViewInit {
       downloaded++;
       if (downloaded === this.size) {
         this.canvas.style.display = 'none';
-        const canvasImg = new Image(IMAGE_SIZE * this.getNumCols(), IMAGE_SIZE * this.getNumCols());
+        const canvasImg = new Image(IMAGE_SIZE * this.numCols, IMAGE_SIZE * this.numCols);
         canvasImg.src = this.canvas.toDataURL('image/png');
         canvasImg.classList.add('img-responsive');
         canvasImg.crossOrigin = 'Anonymous';
@@ -103,7 +96,7 @@ export class MosaicAlbumComponent implements OnInit, AfterViewInit {
       }};
 
     img.onload = () => {
-      this.context.drawImage(img, i * IMAGE_SIZE, j * IMAGE_SIZE);
+      this.context.drawImage(img, colX * IMAGE_SIZE, colY * IMAGE_SIZE);
       registerDownloaded();
     };
     img.src = link;
@@ -117,7 +110,7 @@ export class MosaicAlbumComponent implements OnInit, AfterViewInit {
     return +this.secondFormGroup.get('size').value;
   }
 
-  private getNumCols(): number {
+  private get numCols(): number {
     const size = this.size;
     return this.sizes.find(s => s.value === size).cols;
   }
