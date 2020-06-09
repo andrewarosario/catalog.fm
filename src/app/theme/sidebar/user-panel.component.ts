@@ -6,7 +6,7 @@ import { User } from '@core/models/user';
   template: `
     <div class="matero-user-panel" fxLayout="column" fxLayoutAlign="center center">
       <img
-        ngIf="user.profile"
+        *ngIf="user.profile"
         class="matero-user-panel-avatar"
         [src]="user.profile?.image"
         alt="avatar"
