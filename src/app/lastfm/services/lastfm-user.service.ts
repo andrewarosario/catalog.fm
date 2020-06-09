@@ -3,6 +3,7 @@ import { LastfmService } from './helpers/lastfm.service';
 import { LastfmHttp } from '../models/last-fm-http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
+import { PeriodLastfm } from '@core/models/periods';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,21 @@ export class LastfmUserService {
       data: {
         user,
         page: page.toString()
+      }
+    };
+
+    return this.lastfmService.get<any>(lastfmResponse);
+  }
+
+  public getUserTopAlbums(user: string, page: number, limit: number, period: PeriodLastfm): Observable<any> {
+
+    const lastfmResponse: LastfmHttp = {
+      method: 'user.getTopAlbums',
+      data: {
+        user,
+        page: page.toString(),
+        limit: limit.toString(),
+        period
       }
     };
 
