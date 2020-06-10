@@ -1,18 +1,32 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { SharedModule } from '@shared/shared.module';
+import { UserProfileResolver } from './resolvers/user-profile.resolver';
+import { UserProfileComponent } from './containers/user-profile/user-profile.component';
+import { UserProfileDetailsComponent } from './containers/user-profile-details/user-profile-details.component';
 
 const routes: Routes = [
   {
-    path: ':name',
-    loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfileModule)
-  },
+    path: ':user',
+    component: UserProfileComponent,
+    resolve: { user: UserProfileResolver },
+    children: [
+      { path: '', redirectTo: 'recent-tracks', pathMatch: 'full' },
+      {
+        path: 'recent-tracks',
+        component: UserProfileDetailsComponent
+      },
+    ]
+  }
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    UserProfileComponent,
+    UserProfileDetailsComponent
+  ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ]
 })
