@@ -17,6 +17,11 @@ const routes: Routes = [
         data: { title: 'Auth', titleI18n: 'auth' },
       },
       {
+        path: 'user',
+        loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+        data: { title: 'Usuário', titleI18n: 'Usuário' },
+      },
+      {
         path: 'dashboard',
         component: DashboardComponent,
         data: { title: 'Dashboard', titleI18n: 'dashboard' },
@@ -39,22 +44,6 @@ const routes: Routes = [
       },
     ],
   },
-  /* {
-    path: 'auth',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent,
-        data: { title: 'Login', titleI18n: 'Login' },
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
-        data: { title: 'Register', titleI18n: 'Register' },
-      },
-    ],
-  }, */
   { path: '**', redirectTo: 'dashboard' },
 ];
 
