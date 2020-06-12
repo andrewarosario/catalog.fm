@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'recent-tracks', pathMatch: 'full' },
       {
         path: 'recent-tracks',
-        component: UserProfileDetailsComponent
+        component: UserProfileDetailsComponent,
       },
     ]
   }

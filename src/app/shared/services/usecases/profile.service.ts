@@ -34,4 +34,23 @@ export class ProfileService {
       map(response => response.topalbums)
     );
   }
+
+  getRecentTracks(userName: string, limit = 50, page = 1) {
+    return this.userLastfmService.getUserRecentTracks(userName, limit, page).pipe(
+      map(response => response.recenttracks),
+      map(infoTracks => {
+        return {
+          info: infoTracks['@attr'],
+          tracks: infoTracks.track.map(track => ({
+            artist: track.artist['#text'],
+            song: track.name,
+            album: track.album['#text'],
+            albumImage: track.image[1]['#text'],
+            timestamp: track.date?.uts || null,
+            nowPlaying: !!track['@attr']?.nowplaying
+          }))
+        };
+      })
+    );
+  }
 }

@@ -1,44 +1,27 @@
-<mat-card>
+<mat-card *ngIf="facade.profile$ | async as profile">
   <mat-tab-group class="m--16">
-    <mat-tab label="First">
+    <mat-tab label="Últimas Faixas">
       <div class="m-16">
-        <img class="d-block w-full" src="assets/images/pixabay/2.jpg" alt="">
-        <h3>Aenean viverra arcu nec pellentesque ultrices. In erat purus, adipiscing nec lacinia at,
-          ornare ac eros.
-        </h3>
-        <p>
-          Nullam at risus metus. Quisque nisl purus, pulvinar ut mauris vel, elementum suscipit
-          eros. Praesent
-          ornare ante massa, egestas pellentesque orci convallis ut. Curabitur consequat convallis
-          est, id luctus
-          mauris lacinia vel. Nullam tristique lobortis mauris, ultricies fermentum lacus bibendum
-          id. Proin non
-          ante tortor. Suspendisse pulvinar ornare tellus nec pulvinar. Nam pellentesque accumsan
-          mi, non
-          pellentesque sem convallis sed. Quisque rutrum erat id auctor gravida.</p>
-        <p>
-          Nullam at risus metus. Quisque nisl purus, pulvinar ut mauris vel, elementum suscipit
-          eros. Praesent
-          ornare ante massa, egestas pellentesque orci convallis ut. Curabitur consequat convallis
-          est, id luctus
-          mauris lacinia vel. Nullam tristique lobortis mauris, ultricies fermentum lacus bibendum
-          id. Proin non
-          ante tortor. Suspendisse pulvinar ornare tellus nec pulvinar. Nam pellentesque accumsan
-          mi, non
-          pellentesque sem convallis sed. Quisque rutrum erat id auctor gravida.</p>
-        <p>
-          Nullam at risus metus. Quisque nisl purus, pulvinar ut mauris vel, elementum suscipit
-          eros. Praesent
-          ornare ante massa, egestas pellentesque orci convallis ut. Curabitur consequat convallis
-          est, id luctus
-          mauris lacinia vel. Nullam tristique lobortis mauris, ultricies fermentum lacus bibendum
-          id. Proin non
-          ante tortor. Suspendisse pulvinar ornare tellus nec pulvinar. Nam pellentesque accumsan
-          mi, non
-          pellentesque sem convallis sed. Quisque rutrum erat id auctor gravida.</p>
+        <mat-list *ngIf="facade.recentTracks$ | async as recentTracks">
+          <mat-list-item *ngFor="let track of recentTracks.tracks">
+            <img [src]="track.albumImage" [alt]="track.album">
+            <div mat-line>{{ track.artist }}
+              <mat-icon class="now-playing" *ngIf="track.nowPlaying">headset</mat-icon>
+            </div>
+            <div mat-line> {{ track.song }} </div>
+          </mat-list-item>
+
+          <mat-paginator [length]="recentTracks.info.totalPages"
+               [pageSize]="recentTracks.info.perPage"
+               [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
+               (page)="changePagination(profile.name, $event)"
+               >
+          </mat-paginator>
+        </mat-list>
+
       </div>
     </mat-tab>
-    <mat-tab label="Second">
+    <!-- <mat-tab label="Second">
       <div class="m-16">
         <img class="d-block w-full" src="assets/images/pixabay/8.jpg" alt="">
         <h3>Vestibulum vitae diam nec odio dapibus placerat. Ut ut lorem justo.</h3>
@@ -110,6 +93,6 @@
           fringilla.</p>
 
       </div>
-    </mat-tab>
+    </mat-tab> -->
   </mat-tab-group>
 </mat-card>

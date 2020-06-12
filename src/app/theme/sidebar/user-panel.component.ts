@@ -15,10 +15,10 @@ import { User } from '@core/models/user';
       <h4 class="matero-user-panel-name">{{ user.name }}</h4>
       <h5 class="matero-user-panel-email">{{ user.profile?.realName }}</h5>
       <div class="matero-user-panel-icons">
-        <!-- <a routerLink="/profile/overview" mat-icon-button>
+        <a [routerLink]="['/user', user.name]" mat-icon-button>
           <mat-icon>account_circle</mat-icon>
         </a>
-        <a routerLink="/profile/settings" mat-icon-button>
+        <!-- <a routerLink="/profile/settings" mat-icon-button>
           <mat-icon>settings</mat-icon>
         </a> -->
         <a (click)="logout.emit()" mat-icon-button>

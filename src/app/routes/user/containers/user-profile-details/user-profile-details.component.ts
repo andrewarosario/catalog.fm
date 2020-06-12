@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserProfileFacade } from '../../user-profile.facade';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-profile-details',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public facade: UserProfileFacade
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public changePagination(userName: string, event: PageEvent) {
+    this.facade.getRecentTracks(userName, event.pageSize, event.pageIndex + 1)
+      .subscribe(() => window.scrollTo(0, 0));
   }
 
 }

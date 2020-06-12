@@ -15,11 +15,11 @@ import { User } from '@core/models/user';
     </button>
 
     <mat-menu #menu="matMenu">
-      <!-- <a routerLink="/profile/overview" mat-menu-item>
+      <a [routerLink]="['/user', user.name]" mat-menu-item>
         <mat-icon>account_circle</mat-icon>
-        <span>{{ 'user.profile' | translate }}</span>
+        <span>Meu Perfil</span>
       </a>
-      <a routerLink="/profile/settings" mat-menu-item>
+      <!-- <a routerLink="/profile/settings" mat-menu-item>
         <mat-icon>settings</mat-icon>
         <span>{{ 'user.settings' | translate }}</span>
       </a> -->

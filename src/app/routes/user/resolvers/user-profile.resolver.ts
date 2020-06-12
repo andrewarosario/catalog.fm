@@ -3,16 +3,16 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { ProfileService } from '@shared/services/usecases/profile.service';
 import { Profile } from '@core/models/profile';
 import { Observable } from 'rxjs';
-import { tap, delay } from 'rxjs/operators';
+import { UserProfileFacade } from '../user-profile.facade';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserProfileResolver implements Resolve<Profile> {
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private facade: UserProfileFacade) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Profile> {
-    return this.profileService.get(route.params.user);
+    return this.facade.getUser(route.params.user);
   }
 }
