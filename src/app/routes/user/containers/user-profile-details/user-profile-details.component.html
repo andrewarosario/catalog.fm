@@ -5,10 +5,16 @@
         <mat-list *ngIf="facade.recentTracks$ | async as recentTracks">
           <mat-list-item class="add-cursor-pointer" *ngFor="let track of recentTracks.tracks" (click)="openTrackOptions(track)">
             <img [src]="track.albumImage" [alt]="track.album">
-            <div mat-line>{{ track.artist }}
-              <mat-icon class="now-playing" *ngIf="track.nowPlaying">headset</mat-icon>
-            </div>
             <div mat-line> {{ track.song }} </div>
+            <div mat-line>{{ track.artist }}</div>
+            <div class="track-timestamp" mat-line>
+              <span *ngIf="track.nowPlaying" class="track-timestamp">
+                <mat-icon class="now-playing">headset</mat-icon>
+                Ouvindo agora
+              </span>
+              <small *ngIf="track.timestamp" class="track-timestamp">{{ track.timestamp | fromNow }}</small>
+            </div>
+
           </mat-list-item>
 
           <mat-paginator [length]="recentTracks.info.totalPages"

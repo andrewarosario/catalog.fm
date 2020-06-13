@@ -19,6 +19,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { ErrorCodeComponent } from './components/error-code/error-code.component';
 import { BottomSheetInfoTrackComponent } from './components/bottom-sheet-info-track/bottom-sheet-info-track.component';
+import { FromNowPipe } from './pipes/from-now.pipe';
 
 const THIRD_MODULES = [
   MaterialModule,
@@ -34,12 +35,12 @@ const THIRD_MODULES = [
   TranslateModule,
 ];
 const COMPONENTS = [BreadcrumbComponent, PageHeaderComponent, ErrorCodeComponent];
-const COMPONENTS_DYNAMIC = [];
+const COMPONENTS_DYNAMIC = [BottomSheetInfoTrackComponent];
 const DIRECTIVES = [];
-const PIPES = [];
+const PIPES = [FromNowPipe];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, ...DIRECTIVES, ...PIPES, BottomSheetInfoTrackComponent],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, ...DIRECTIVES, ...PIPES],
   imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule, ...THIRD_MODULES],
   exports: [
     CommonModule,
