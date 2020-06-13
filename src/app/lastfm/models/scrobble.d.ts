@@ -3,6 +3,7 @@ interface TrackScrobble {
   album: string;
   artist: string;
   song: string;
+  timestamp?: number;
 }
 
 interface ScrobbleResponse {

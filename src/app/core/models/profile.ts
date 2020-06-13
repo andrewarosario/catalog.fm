@@ -7,3 +7,20 @@ export interface Profile {
   playcount: number;
   registered: number;
 }
+
+export interface ProfileRecentTracks {
+  info: InfoRecentTracks;
+  tracks: RecentTrack[];
+}
+
+interface InfoRecentTracks {
+  page: string;
+  perPage: string;
+  total: string;
+  totalPages: string;
+}
+
+interface RecentTrack extends TrackScrobble {
+  albumImage: string;
+  nowPlaying: boolean;
+}

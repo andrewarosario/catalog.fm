@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Profile } from '@core/models/profile';
+import { Profile, ProfileRecentTracks } from '@core/models/profile';
 import { PeriodLastfm } from '@core/models/periods';
 
 @Injectable({
@@ -35,7 +35,7 @@ export class ProfileService {
     );
   }
 
-  getRecentTracks(userName: string, limit = 50, page = 1) {
+  getRecentTracks(userName: string, limit = 50, page = 1): Observable<ProfileRecentTracks> {
     return this.userLastfmService.getUserRecentTracks(userName, limit, page).pipe(
       map(response => response.recenttracks),
       map(infoTracks => {
