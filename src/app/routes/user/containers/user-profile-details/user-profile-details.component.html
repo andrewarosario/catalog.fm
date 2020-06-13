@@ -3,7 +3,7 @@
     <mat-tab label="Últimas Faixas">
       <div class="m-16">
         <mat-list *ngIf="facade.recentTracks$ | async as recentTracks">
-          <mat-list-item *ngFor="let track of recentTracks.tracks">
+          <mat-list-item class="add-cursor-pointer" *ngFor="let track of recentTracks.tracks" (click)="openTrackOptions(track)">
             <img [src]="track.albumImage" [alt]="track.album">
             <div mat-line>{{ track.artist }}
               <mat-icon class="now-playing" *ngIf="track.nowPlaying">headset</mat-icon>

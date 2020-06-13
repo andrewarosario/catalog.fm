@@ -13,14 +13,14 @@ export interface ProfileRecentTracks {
   tracks: RecentTrack[];
 }
 
-interface InfoRecentTracks {
+export interface InfoRecentTracks {
   page: string;
   perPage: string;
   total: string;
   totalPages: string;
 }
 
-interface RecentTrack extends TrackScrobble {
+export interface RecentTrack extends TrackScrobble {
   albumImage: string;
   nowPlaying: boolean;
 }

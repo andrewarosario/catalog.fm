@@ -17,4 +17,8 @@ $cursor: (
   )
 );
 
+.add-cursor-pointer {
+  cursor: pointer;
+}
+
 $utilities: map-merge($cursor, $utilities);
