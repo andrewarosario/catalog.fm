@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Profile, ProfileRecentTracks } from '@core/models/profile';
 import { PeriodLastfm } from '@core/models/periods';
@@ -29,7 +29,7 @@ export class ProfileService {
     );
   }
 
-  getTopAlbums(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<any> {
+  getTopAlbums(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<LastfmTopAlbums> {
     return this.userLastfmService.getUserTopAlbums(userName, page, limit, period).pipe(
       map(response => response.topalbums)
     );

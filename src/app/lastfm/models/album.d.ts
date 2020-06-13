@@ -1,4 +1,4 @@
-interface AlbumMatch {
+interface LastfmAlbumMatch {
   type: 'album';
   name: string;
   artist: string | any;
@@ -7,7 +7,7 @@ interface AlbumMatch {
   image?: Images;
 }
 
-interface Album extends AlbumMatch {
+interface Album extends LastfmAlbumMatch {
   id?: string;
   artist: string;
   playcount: string;
@@ -42,7 +42,7 @@ interface AlbumSearchResponse {
     'opensearch:startIndex': string;
     'opensearch:totalResults': string;
     albummatches: {
-      album: AlbumMatch[];
+      album: LastfmAlbumMatch[];
     };
   };
 }

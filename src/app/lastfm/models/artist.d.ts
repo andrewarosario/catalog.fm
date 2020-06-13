@@ -9,7 +9,7 @@ interface ArtistMatch {
 
 interface Artist extends ArtistMatch {
   id?: string;
-  albums: AlbumMatch[];
+  albums: LastfmAlbumMatch[];
   stats: {
     listeners: string;
     playcount: string;
@@ -49,15 +49,15 @@ interface ArtistInfoResponse {
   artist: Artist;
 }
 
-interface TopAlbumsResponse {
-  topalbums: {
-    '@attr': {
-      artist: string;
-      page: string;
-      perPage: string;
-      totalPages: string;
-      total: string;
-    };
-    album: AlbumMatch[];
-  };
+interface LastfmTopAlbumsSearch extends LastfmSearch {
+  artist: string;
+}
+
+interface LastfmTopAlbums {
+  '@attr': LastfmTopAlbumsSearch;
+  album: LastfmAlbumMatch[];
+}
+
+interface LastfmTopAlbumsResponse {
+  topalbums: LastfmTopAlbums;
 }

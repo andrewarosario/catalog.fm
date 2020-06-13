@@ -3,6 +3,7 @@ import { ProfileService } from '@shared/services/usecases/profile.service';
 import { UserService } from '@core/services/user.service';
 import { PeriodLastfm } from '@core/models/periods';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class MosaicAlbumFacade {
     private userService: UserService
   ) {}
 
-  public getImageAlbums(size: number, period: PeriodLastfm) {
+  public getImageAlbums(size: number, period: PeriodLastfm): Observable<string[]> {
     return this.profileService
         .getTopAlbums(this.userService.user.name, 1, size, period)
         .pipe(
