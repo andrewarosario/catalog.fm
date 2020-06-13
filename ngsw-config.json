@@ -30,7 +30,7 @@
     {
       "name": "lastfm-api",
       "cacheConfig": {
-        "strategy": "performance",
+        "strategy": "freshness",
         "maxAge": "6h",
         "maxSize": 10000,
         "timeout": "5s"
