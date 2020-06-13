@@ -25,5 +25,19 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "lastfm-api",
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxAge": "6h",
+        "maxSize": 10000,
+        "timeout": "5s"
+      },
+      "urls": [
+        "https://ws.audioscrobbler.com/2.0/**"
+      ]
+    }
   ]
 }
