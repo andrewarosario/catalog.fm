@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Profile, ProfileRecentTracks } from '@core/models/profile';
 import { PeriodLastfm } from '@core/models/periods';
@@ -46,7 +46,7 @@ export class ProfileService {
             song: track.name,
             album: track.album['#text'],
             albumImage: track.image[1]['#text'],
-            timestamp: track.date?.uts || null,
+            timestamp: +track.date?.uts || null,
             nowPlaying: !!track['@attr']?.nowplaying
           }))
         };

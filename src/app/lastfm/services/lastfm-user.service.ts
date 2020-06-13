@@ -24,7 +24,7 @@ export class LastfmUserService {
     return this.lastfmService.get<UserLastfmResponse>(lastfmResponse);
   }
 
-  public getUserRecentTracks(user: string, limit = 50, page = 1): Observable<any> {
+  public getUserRecentTracks(user: string, limit = 50, page = 1): Observable<LastfmRecentTracksResponse> {
 
     const lastfmResponse: LastfmHttp = {
       method: 'user.getRecentTracks',

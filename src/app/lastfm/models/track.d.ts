@@ -42,6 +42,13 @@ interface Track extends TrackMatch {
     summary: string;
     content: string;
   };
+  date?: {
+    '#text': string;
+    uts: string;
+  }
+  '@attr'?: {
+    nowplaying: string;
+  }
 }
 
 interface TrackSearchResponse {

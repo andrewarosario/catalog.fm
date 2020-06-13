@@ -29,14 +29,15 @@ interface UserLastfmResponse {
   user: UserLastfm;
 }
 
-interface RecentTracks {
-  recenttracks: {
-    '@attr': {
-      page: number,
-      perPage: number,
-      total: number,
-      totalPages: number
-      user: string
-    }
-  };
+interface LastfmRecentTracksSearch extends LastfmSearch {
+  user: string;
+}
+
+interface LastfmRecentTracks {
+  '@attr': LastfmRecentTracksSearch;
+  track: Track[];
+}
+
+interface LastfmRecentTracksResponse {
+  recenttracks: LastfmRecentTracks;
 }
