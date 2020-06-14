@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { Profile, ProfileRecentTracks } from '@core/models/profile';
-import { PeriodLastfm } from '@core/models/periods';
+import { ALBUM_IMAGE_DEFAULT } from '@core/models/default';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +30,7 @@ export class ProfileAdapterService {
         artist: track.artist['#text'],
         song: track.name,
         album: track.album['#text'],
-        albumImage: track.image[1]['#text'],
+        albumImage: track.image[1]['#text'] || ALBUM_IMAGE_DEFAULT,
         timestamp: +track.date?.uts || null,
         nowPlaying: !!track['@attr']?.nowplaying
       }))
