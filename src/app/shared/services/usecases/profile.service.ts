@@ -22,6 +22,18 @@ export class ProfileService {
     );
   }
 
+  getTopArtists(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<any> {
+    return this.userLastfmService.getUserTopArtists(userName, page, limit, period).pipe(
+      map(response => response.topartists)
+    );
+  }
+
+  getTopTracks(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<any> {
+    return this.userLastfmService.getUserTopArtists(userName, page, limit, period).pipe(
+      map(response => response.toptracks)
+    );
+  }
+
   getTopAlbums(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<LastfmTopAlbums> {
     return this.userLastfmService.getUserTopAlbums(userName, page, limit, period).pipe(
       map(response => response.topalbums)

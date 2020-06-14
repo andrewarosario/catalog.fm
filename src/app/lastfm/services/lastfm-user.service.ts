@@ -38,6 +38,21 @@ export class LastfmUserService {
     return this.lastfmService.get<any>(lastfmResponse);
   }
 
+  public getUserTopArtists(user: string, page: number, limit: number, period: PeriodLastfm): Observable<any> {
+
+    const lastfmResponse: LastfmHttp = {
+      method: 'user.getTopArtists',
+      data: {
+        user,
+        page: page.toString(),
+        limit: limit.toString(),
+        period
+      }
+    };
+
+    return this.lastfmService.get<any>(lastfmResponse);
+  }
+
   public getUserTopAlbums(user: string, page: number, limit: number, period: PeriodLastfm): Observable<LastfmTopAlbumsResponse> {
 
     const lastfmResponse: LastfmHttp = {
@@ -51,6 +66,21 @@ export class LastfmUserService {
     };
 
     return this.lastfmService.get<LastfmTopAlbumsResponse>(lastfmResponse);
+  }
+
+  public getUserTopTracks(user: string, page: number, limit: number, period: PeriodLastfm): Observable<any> {
+
+    const lastfmResponse: LastfmHttp = {
+      method: 'user.getTopTracks',
+      data: {
+        user,
+        page: page.toString(),
+        limit: limit.toString(),
+        period
+      }
+    };
+
+    return this.lastfmService.get<any>(lastfmResponse);
   }
 
   public scrobble(userKey: string, input: TrackScrobble, timestamp = moment().unix()): Observable<ScrobbleResponse> {
