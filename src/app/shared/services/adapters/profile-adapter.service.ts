@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Profile, ProfileRecentTracks } from '@core/models/profile';
+import { Profile, ProfileRecentTracks, ProfileTopAlbums } from '@core/models/profile';
 import { ALBUM_IMAGE_DEFAULT } from '@core/models/default';
 
 @Injectable({
@@ -37,7 +37,7 @@ export class ProfileAdapterService {
     };
   }
 
-  public adaptLastfmTopAlbumsToProfileTopAlbums(response: LastfmTopAlbumsResponse) {
+  public adaptLastfmTopAlbumsToProfileTopAlbums(response: LastfmTopAlbumsResponse): ProfileTopAlbums {
     const topAlbums = response.topalbums;
 
     return {
@@ -46,7 +46,8 @@ export class ProfileAdapterService {
         artist: album.artist.name,
         name: album.name,
         playcount: +album.playcount,
-        image: album.image[3]['#text']
+        image: album.image[3]['#text'],
+        imageSize2: album.image[2]['#text'],
       }))
     };
   }

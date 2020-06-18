@@ -19,8 +19,7 @@ export class MosaicAlbumFacade {
     return this.profileService
         .getTopAlbums(this.userService.user.name, 1, size, period)
         .pipe(
-          map(res => res.album),
-          map(albums => albums.map(album => album.image['2']['#text'])),
+          map(topAlbums => topAlbums.albums.map(album => album.imageSize2)),
         );
   }
 

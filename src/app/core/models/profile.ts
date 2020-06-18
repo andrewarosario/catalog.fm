@@ -34,5 +34,6 @@ export interface TopAlbum {
   name: string;
   artist: string;
   image: string;
+  imageSize2: string;
   playcount: number;
 }
