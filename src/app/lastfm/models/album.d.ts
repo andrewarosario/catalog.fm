@@ -5,6 +5,7 @@ interface LastfmAlbumMatch {
   url: string;
   mbid: string;
   image?: Images;
+  playcount: string;
 }
 
 interface Album extends LastfmAlbumMatch {

@@ -37,4 +37,18 @@ export class ProfileAdapterService {
     };
   }
 
+  public adaptLastfmTopAlbumsToProfileTopAlbums(response: LastfmTopAlbumsResponse) {
+    const topAlbums = response.topalbums;
+
+    return {
+      info: topAlbums['@attr'],
+      albums: topAlbums.album.map(album => ({
+        artist: album.artist.name,
+        name: album.name,
+        playcount: +album.playcount,
+        image: album.image[3]['#text']
+      }))
+    };
+  }
+
 }
