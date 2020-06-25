@@ -30,10 +30,21 @@ export interface ProfileTopAlbums {
   albums: TopAlbum[];
 }
 
+export interface ProfileTopArtists {
+  info: InfoResult;
+  artists: TopArtist[];
+}
+
 export interface TopAlbum {
   name: string;
   artist: string;
   image: string;
   imageSize2: string;
+  playcount: number;
+}
+
+export interface TopArtist {
+  name: string;
+  image: string;
   playcount: number;
 }

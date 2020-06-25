@@ -8,7 +8,7 @@ import { environment } from '@env/environment';
 })
 export abstract class LastfmHttpService {
 
-  private base = 'https://ws.audioscrobbler.com/2.0/';
+  private readonly base = 'https://ws.audioscrobbler.com/2.0/';
 
   constructor() {
   }
