@@ -1,5 +1,5 @@
 type Entity = Track | Album | Artist | UserLastfm;
-type Searchable = Track | LastfmAlbumMatch | ArtistMatch;
+type Searchable = Track | LastfmAlbumMatch | LastfmArtistMatch;
 
 interface PaginatedData<T extends Searchable> {
   [page: number]: T[];

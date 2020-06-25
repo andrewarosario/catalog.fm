@@ -1,13 +1,14 @@
-interface ArtistMatch {
+interface LastfmArtistMatch {
   type: 'artist';
   name: string;
   url: string;
   streamable: '0' | '1';
   mbid: string;
   image?: Images;
+  playcount: string;
 }
 
-interface Artist extends ArtistMatch {
+interface Artist extends LastfmArtistMatch {
   id?: string;
   albums: LastfmAlbumMatch[];
   stats: {
@@ -40,7 +41,7 @@ interface ArtistSearchResponse {
     'opensearch:startIndex': string;
     'opensearch:totalResults': string;
     artistmatches: {
-      artist: ArtistMatch[];
+      artist: LastfmArtistMatch[];
     };
   };
 }
@@ -60,4 +61,13 @@ interface LastfmTopAlbums {
 
 interface LastfmTopAlbumsResponse {
   topalbums: LastfmTopAlbums;
+}
+
+interface LastfmTopArtists {
+  '@attr': LastfmTopAlbumsSearch;
+  artist: LastfmArtistMatch[];
+}
+
+interface LastfmTopArtistsResponse {
+  topartists: LastfmTopArtists;
 }
