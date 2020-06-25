@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Profile, ProfileRecentTracks, ProfileTopAlbums } from '@core/models/profile';
-import { ALBUM_IMAGE_DEFAULT } from '@core/models/default';
+import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists } from '@core/models/profile';
+import { ALBUM_IMAGE_DEFAULT, ARTIST_IMAGE_DEFAULT } from '@core/models/default';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,22 @@ export class ProfileAdapterService {
         playcount: +album.playcount,
         image: album.image[3]['#text'],
         imageSize2: album.image[2]['#text'],
+      }))
+    };
+  }
+
+  public adaptLastfmTopArtistsToProfileTopArtist(
+    lastfmResponse: LastfmTopArtistsResponse,
+    theAudioDbResponse: TheAudioDbArtist[]
+  ): ProfileTopArtists {
+    const topArtists = lastfmResponse.topartists;
+
+    return {
+      info: topArtists['@attr'],
+      artists: topArtists.artist.map((artist, index) => ({
+        name: artist.name,
+        playcount: +artist.playcount,
+        image: theAudioDbResponse[index]?.strArtistThumb || ARTIST_IMAGE_DEFAULT
       }))
     };
   }

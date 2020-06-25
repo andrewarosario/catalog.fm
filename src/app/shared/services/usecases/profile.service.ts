@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { Profile, ProfileRecentTracks, ProfileTopAlbums } from '@core/models/profile';
+import { map, tap, switchMap, mergeMap } from 'rxjs/operators';
+import { Observable, forkJoin, of } from 'rxjs';
+import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists } from '@core/models/profile';
 import { PeriodLastfm } from '@core/models/periods';
 import { ProfileAdapterService } from '../adapters/profile-adapter.service';
+import { TheAudioDbService } from 'app/the-audio-db/services/the-audio-db.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ProfileService {
 
   constructor(
     private userLastfmService: LastfmUserService,
+    private theAudioDbService: TheAudioDbService,
     private adapter: ProfileAdapterService
   ) {}
 
@@ -22,14 +24,20 @@ export class ProfileService {
     );
   }
 
-  getTopArtists(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<any> {
+  getTopArtists(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<ProfileTopArtists> {
     return this.userLastfmService.getUserTopArtists(userName, page, limit, period).pipe(
-      map(response => response.topartists)
+      switchMap(res => {
+        return forkJoin(
+            of(res),
+            forkJoin(res.topartists.artist.map(a => this.theAudioDbService.getArtistInfo(a.name)))
+          );
+      }),
+      map(([lastfmResult, theAudioDbResult]) => this.adapter.adaptLastfmTopArtistsToProfileTopArtist(lastfmResult, theAudioDbResult)),
     );
   }
 
   getTopTracks(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<any> {
-    return this.userLastfmService.getUserTopArtists(userName, page, limit, period).pipe(
+    return this.userLastfmService.getUserTopTracks(userName, page, limit, period).pipe(
       map(response => response.toptracks)
     );
   }

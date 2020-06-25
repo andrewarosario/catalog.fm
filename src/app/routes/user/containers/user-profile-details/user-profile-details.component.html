@@ -27,6 +27,21 @@
 
       </div>
     </mat-tab>
+    <mat-tab label="Artistas">
+
+      <div *ngIf="facade.topArtists$ | async as topArtists" class="grid">
+        <div *ngFor="let artist of topArtists.artists" class="info">
+          <div class="info-inner">
+            <h3 class="c__name">{{ artist.name }}</h3>
+            <div class="label">
+              <span class="c__label">{{ artist.playcount }} Reproduções</span>
+            </div>
+          </div>
+          <img [src]="artist.image">
+        </div>
+      </div>
+
+    </mat-tab>
     <mat-tab label="Álbuns">
 
       <div *ngIf="facade.topAlbums$ | async as topAlbums" class="grid">
@@ -43,41 +58,6 @@
       </div>
 
     </mat-tab>
-    <!-- <mat-tab label="Third">
-      <div class="m-16">
-        <img class="d-block w-full" src="assets/images/pixabay/16.jpg" alt="">
-        <h3>Maecenas eget turpis luctus, scelerisque arcu id, iaculis urna. Interdum et malesuada
-          fames ac ante
-          ipsum primis in faucibus.</h3>
-        <p>
-          Morbi placerat est nec pharetra placerat. Ut laoreet nunc accumsan orci aliquam accumsan.
-          Maecenas
-          volutpat dolor vitae sapien ultricies fringilla. Suspendisse vitae orci sed nibh ultrices
-          tristique.
-          Aenean in ante eget urna semper imperdiet. Pellentesque sagittis a nulla at scelerisque.
-          Nam augue nulla,
-          accumsan quis nisi a, facilisis eleifend nulla. Praesent aliquet odio non imperdiet
-          fringilla.</p>
-        <p>
-          Morbi placerat est nec pharetra placerat. Ut laoreet nunc accumsan orci aliquam accumsan.
-          Maecenas
-          volutpat dolor vitae sapien ultricies fringilla. Suspendisse vitae orci sed nibh ultrices
-          tristique.
-          Aenean in ante eget urna semper imperdiet. Pellentesque sagittis a nulla at scelerisque.
-          Nam augue nulla,
-          accumsan quis nisi a, facilisis eleifend nulla. Praesent aliquet odio non imperdiet
-          fringilla.</p>
-        <p>
-          Morbi placerat est nec pharetra placerat. Ut laoreet nunc accumsan orci aliquam accumsan.
-          Maecenas
-          volutpat dolor vitae sapien ultricies fringilla. Suspendisse vitae orci sed nibh ultrices
-          tristique.
-          Aenean in ante eget urna semper imperdiet. Pellentesque sagittis a nulla at scelerisque.
-          Nam augue nulla,
-          accumsan quis nisi a, facilisis eleifend nulla. Praesent aliquet odio non imperdiet
-          fringilla.</p>
 
-      </div>
-    </mat-tab> -->
   </mat-tab-group>
 </mat-card>

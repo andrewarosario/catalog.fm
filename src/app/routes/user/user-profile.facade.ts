@@ -13,6 +13,8 @@ export class UserProfileFacade {
   public profile$ = this.profileSubject$.asObservable();
   private recentTracksSubject$ = new BehaviorSubject<ProfileRecentTracks>(null);
   public recentTracks$ = this.recentTracksSubject$.asObservable();
+  private topArtistsSubject$ = new BehaviorSubject<any>(null);
+  public topArtists$ = this.topArtistsSubject$.asObservable();
   private topAlbumsSubject$ = new BehaviorSubject<ProfileTopAlbums>(null);
   public topAlbums$ = this.topAlbumsSubject$.asObservable();
 
@@ -21,9 +23,11 @@ export class UserProfileFacade {
   ) {}
 
   public getUser(name: string) {
+    this.getTopArtists(name).subscribe();
+    this.getTopAlbums(name).subscribe();
+
     return this.getInfoUser(name).pipe(
       switchMap(() => this.getRecentTracks(name, 10)),
-      switchMap(() => this.getTopAlbums(name))
     );
   }
 
@@ -36,6 +40,12 @@ export class UserProfileFacade {
   public getRecentTracks(name: string, limit = 10, page = 1): Observable<ProfileRecentTracks> {
     return this.profileService.getRecentTracks(name, limit, page).pipe(
       tap(recent => this.recentTracksSubject$.next(recent))
+    );
+  }
+
+  public getTopArtists(name: string): Observable<any> {
+    return this.profileService.getTopArtists(name).pipe(
+      tap(albums => this.topArtistsSubject$.next(albums))
     );
   }
 
