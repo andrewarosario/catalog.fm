@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProfileService } from '@shared/services/usecases/profile.service';
 import { tap, switchMap } from 'rxjs/operators';
-import { Profile, ProfileRecentTracks, ProfileTopAlbums } from '@core/models/profile';
+import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists } from '@core/models/profile';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -13,10 +13,12 @@ export class UserProfileFacade {
   public profile$ = this.profileSubject$.asObservable();
   private recentTracksSubject$ = new BehaviorSubject<ProfileRecentTracks>(null);
   public recentTracks$ = this.recentTracksSubject$.asObservable();
-  private topArtistsSubject$ = new BehaviorSubject<any>(null);
+  private topArtistsSubject$ = new BehaviorSubject<ProfileTopArtists>(null);
   public topArtists$ = this.topArtistsSubject$.asObservable();
   private topAlbumsSubject$ = new BehaviorSubject<ProfileTopAlbums>(null);
   public topAlbums$ = this.topAlbumsSubject$.asObservable();
+  private topTracksSubject$ = new BehaviorSubject<any>(null);
+  public topTracks$ = this.topTracksSubject$.asObservable();
 
   constructor(
     private profileService: ProfileService
@@ -25,6 +27,7 @@ export class UserProfileFacade {
   public getUser(name: string) {
     this.getTopArtists(name).subscribe();
     this.getTopAlbums(name).subscribe();
+    this.getTopTracks(name).subscribe(console.log);
 
     return this.getInfoUser(name).pipe(
       switchMap(() => this.getRecentTracks(name, 10)),
@@ -43,7 +46,7 @@ export class UserProfileFacade {
     );
   }
 
-  public getTopArtists(name: string): Observable<any> {
+  public getTopArtists(name: string): Observable<ProfileTopArtists> {
     return this.profileService.getTopArtists(name).pipe(
       tap(albums => this.topArtistsSubject$.next(albums))
     );
@@ -52,6 +55,12 @@ export class UserProfileFacade {
   public getTopAlbums(name: string): Observable<ProfileTopAlbums> {
     return this.profileService.getTopAlbums(name).pipe(
       tap(albums => this.topAlbumsSubject$.next(albums))
+    );
+  }
+
+  public getTopTracks(name: string): Observable<any> {
+    return this.profileService.getTopTracks(name).pipe(
+      tap(tracks => this.topTracksSubject$.next(tracks))
     );
   }
 

@@ -38,7 +38,18 @@ export class ProfileService {
 
   getTopTracks(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<any> {
     return this.userLastfmService.getUserTopTracks(userName, page, limit, period).pipe(
-      map(response => response.toptracks)
+      map(response => response.toptracks),
+      map(toptracks => ({
+        info: toptracks['@attr'],
+        tracks: toptracks.track.map(track => ({
+          artist: track.artist.name,
+          name: track.name,
+          playcount: +track.playcount,
+          image: track.image[3]['#text'],
+          imageSize2: track.image[2]['#text'],
+          duration: +track.duration
+        }))
+      }))
     );
   }
 
