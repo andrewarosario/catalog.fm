@@ -1,6 +1,6 @@
 {
   "name": "catalog.fm",
-  "version": "v0.1.3",
+  "version": "v0.1.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
