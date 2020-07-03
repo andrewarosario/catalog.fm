@@ -51,3 +51,12 @@ interface AlbumSearchResponse {
 interface AlbumInfoResponse {
   album: Album;
 }
+
+interface LastfmTopAlbums {
+  '@attr': LastfmTopAlbumsSearch;
+  album: LastfmAlbumMatch[];
+}
+
+interface LastfmTopAlbumsResponse {
+  topalbums: LastfmTopAlbums;
+}

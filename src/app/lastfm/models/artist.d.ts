@@ -54,15 +54,6 @@ interface LastfmTopAlbumsSearch extends LastfmSearch {
   artist: string;
 }
 
-interface LastfmTopAlbums {
-  '@attr': LastfmTopAlbumsSearch;
-  album: LastfmAlbumMatch[];
-}
-
-interface LastfmTopAlbumsResponse {
-  topalbums: LastfmTopAlbums;
-}
-
 interface LastfmTopArtists {
   '@attr': LastfmTopAlbumsSearch;
   artist: LastfmArtistMatch[];
