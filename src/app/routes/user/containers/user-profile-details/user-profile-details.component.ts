@@ -21,8 +21,13 @@ export class UserProfileDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public changePagination(userName: string, event: PageEvent) {
+  public changeRecentTracksPagination(userName: string, event: PageEvent) {
     this.facade.getRecentTracks(userName, event.pageSize, event.pageIndex + 1)
+      .subscribe(() => window.scrollTo(0, 0));
+  }
+
+  public changeTopTracksPagination(userName: string, event: PageEvent) {
+    this.facade.getTopTracks(userName, event.pageSize, event.pageIndex + 1)
       .subscribe(() => window.scrollTo(0, 0));
   }
 

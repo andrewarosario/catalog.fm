@@ -5,12 +5,12 @@ interface LastfmArtistMatch {
   streamable: '0' | '1';
   mbid: string;
   image?: Images;
-  playcount: string;
 }
 
-interface Artist extends LastfmArtistMatch {
+interface LastfmArtist extends LastfmArtistMatch {
   id?: string;
   albums: LastfmAlbumMatch[];
+  playcount: string;
   stats: {
     listeners: string;
     playcount: string;
@@ -47,7 +47,7 @@ interface ArtistSearchResponse {
 }
 
 interface ArtistInfoResponse {
-  artist: Artist;
+  artist: LastfmArtist;
 }
 
 interface LastfmTopAlbumsSearch extends LastfmSearch {
@@ -56,7 +56,7 @@ interface LastfmTopAlbumsSearch extends LastfmSearch {
 
 interface LastfmTopArtists {
   '@attr': LastfmTopAlbumsSearch;
-  artist: LastfmArtistMatch[];
+  artist: LastfmArtist[];
 }
 
 interface LastfmTopArtistsResponse {

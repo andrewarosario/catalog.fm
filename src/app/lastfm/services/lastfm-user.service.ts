@@ -68,7 +68,7 @@ export class LastfmUserService {
     return this.lastfmService.get<LastfmTopAlbumsResponse>(lastfmResponse);
   }
 
-  public getUserTopTracks(user: string, page: number, limit: number, period: PeriodLastfm): Observable<any> {
+  public getUserTopTracks(user: string, limit: number, page: number, period: PeriodLastfm): Observable<LastfmTopTracksResponse> {
 
     const lastfmResponse: LastfmHttp = {
       method: 'user.getTopTracks',

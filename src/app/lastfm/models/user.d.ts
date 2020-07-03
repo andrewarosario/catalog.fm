@@ -35,7 +35,7 @@ interface LastfmRecentTracksSearch extends LastfmSearch {
 
 interface LastfmRecentTracks {
   '@attr': LastfmRecentTracksSearch;
-  track: Track[];
+  track: LastfmTrack[];
 }
 
 interface LastfmRecentTracksResponse {

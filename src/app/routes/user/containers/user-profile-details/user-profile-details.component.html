@@ -1,6 +1,6 @@
 <mat-card *ngIf="facade.profile$ | async as profile">
   <mat-tab-group class="m--16">
-    <mat-tab label="Últimas Faixas">
+    <mat-tab label="Últimos Scrobbles">
       <div class="m-16">
         <mat-list *ngIf="facade.recentTracks$ | async as recentTracks">
           <mat-list-item class="add-cursor-pointer" *ngFor="let track of recentTracks.tracks" (click)="openTrackOptions(track)">
@@ -20,7 +20,7 @@
           <mat-paginator [length]="recentTracks.info.totalPages"
                [pageSize]="recentTracks.info.perPage"
                [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
-               (page)="changePagination(profile.name, $event)"
+               (page)="changeRecentTracksPagination(profile.name, $event)"
                >
           </mat-paginator>
         </mat-list>
@@ -58,6 +58,26 @@
       </div>
 
     </mat-tab>
+    <mat-tab label="Faixas">
+      <div class="m-16">
+        <mat-list *ngIf="facade.topTracks$ | async as topTracks">
+          <mat-list-item class="add-cursor-pointer" *ngFor="let track of topTracks.tracks" (click)="openTrackOptions(track)">
+            <img [src]="track.image" [alt]="track.song">
+            <div mat-line> {{ track.song }} </div>
+            <div mat-line>{{ track.artist }}</div>
+            <div mat-line>{{ track.playcount }} Reproduções</div>
 
+          </mat-list-item>
+
+          <mat-paginator [length]="topTracks.info.totalPages"
+               [pageSize]="topTracks.info.perPage"
+               [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
+               (page)="changeTopTracksPagination(profile.name, $event)"
+               >
+          </mat-paginator>
+        </mat-list>
+
+      </div>
+    </mat-tab>
   </mat-tab-group>
 </mat-card>

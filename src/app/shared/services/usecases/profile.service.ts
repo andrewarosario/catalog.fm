@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
 import { map, tap, switchMap, mergeMap } from 'rxjs/operators';
 import { Observable, forkJoin, of } from 'rxjs';
-import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists } from '@core/models/profile';
+import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/models/profile';
 import { PeriodLastfm } from '@core/models/periods';
 import { ProfileAdapterService } from '../adapters/profile-adapter.service';
 import { TheAudioDbService } from 'app/the-audio-db/services/the-audio-db.service';
@@ -36,20 +36,9 @@ export class ProfileService {
     );
   }
 
-  getTopTracks(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<any> {
+  getTopTracks(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<ProfileTopTracks> {
     return this.userLastfmService.getUserTopTracks(userName, page, limit, period).pipe(
-      map(response => response.toptracks),
-      map(toptracks => ({
-        info: toptracks['@attr'],
-        tracks: toptracks.track.map(track => ({
-          artist: track.artist.name,
-          name: track.name,
-          playcount: +track.playcount,
-          image: track.image[3]['#text'],
-          imageSize2: track.image[2]['#text'],
-          duration: +track.duration
-        }))
-      }))
+      map(response => this.adapter.adaptLastfmTopTracksToProfileTopTracks(response)),
     );
   }
 

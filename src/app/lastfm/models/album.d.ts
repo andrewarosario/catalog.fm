@@ -5,15 +5,14 @@ interface LastfmAlbumMatch {
   url: string;
   mbid: string;
   image?: Images;
-  playcount: string;
 }
 
-interface Album extends LastfmAlbumMatch {
+interface LastfmAlbum extends LastfmAlbumMatch {
   id?: string;
-  artist: string;
+  artist: string | any;
   playcount: string;
   tracks: {
-    track: TrackMatch[]
+    track: LastfmTrackMatch[]
   };
   tags: {
     tag: {
@@ -49,12 +48,12 @@ interface AlbumSearchResponse {
 }
 
 interface AlbumInfoResponse {
-  album: Album;
+  album: LastfmAlbum;
 }
 
 interface LastfmTopAlbums {
   '@attr': LastfmTopAlbumsSearch;
-  album: LastfmAlbumMatch[];
+  album: LastfmAlbum[];
 }
 
 interface LastfmTopAlbumsResponse {

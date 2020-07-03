@@ -35,6 +35,11 @@ export interface ProfileTopArtists {
   artists: TopArtist[];
 }
 
+export interface ProfileTopTracks {
+  info: InfoResult;
+  tracks: TopTrack[];
+}
+
 export interface TopAlbum {
   name: string;
   artist: string;
@@ -47,4 +52,13 @@ export interface TopArtist {
   name: string;
   image: string;
   playcount: number;
+}
+
+export interface TopTrack {
+  artist: string;
+  song: string;
+  playcount: number;
+  image: string;
+  imageSize2: string;
+  duration: number;
 }

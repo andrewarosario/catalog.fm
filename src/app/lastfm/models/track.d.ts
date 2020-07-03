@@ -1,4 +1,4 @@
-interface TrackMatch {
+interface LastfmTrackMatch {
   type: 'song';
   name: string;
   artist: string | any;
@@ -12,7 +12,7 @@ interface TrackMatch {
   image?: Images;
 }
 
-interface Track extends TrackMatch {
+interface LastfmTrack extends LastfmTrackMatch {
   id?: string;
   duration: string;
   playcount: string;
@@ -62,11 +62,20 @@ interface TrackSearchResponse {
     'opensearch:startIndex': string;
     'opensearch:totalResults': string;
     trackmatches: {
-      track: TrackMatch[];
+      track: LastfmTrackMatch[];
     };
   };
 }
 
 interface TrackInfoResponse {
-  track: Track;
+  track: LastfmTrack;
+}
+
+interface LastfmTopTracks {
+  '@attr': LastfmTopAlbumsSearch;
+  track: LastfmTrack[];
+}
+
+interface LastfmTopTracksResponse {
+  toptracks: LastfmTopTracks;
 }

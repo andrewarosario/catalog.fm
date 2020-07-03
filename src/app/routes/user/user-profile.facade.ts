@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProfileService } from '@shared/services/usecases/profile.service';
 import { tap, switchMap } from 'rxjs/operators';
-import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists } from '@core/models/profile';
+import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/models/profile';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class UserProfileFacade {
   public topArtists$ = this.topArtistsSubject$.asObservable();
   private topAlbumsSubject$ = new BehaviorSubject<ProfileTopAlbums>(null);
   public topAlbums$ = this.topAlbumsSubject$.asObservable();
-  private topTracksSubject$ = new BehaviorSubject<any>(null);
+  private topTracksSubject$ = new BehaviorSubject<ProfileTopTracks>(null);
   public topTracks$ = this.topTracksSubject$.asObservable();
 
   constructor(
@@ -27,7 +27,7 @@ export class UserProfileFacade {
   public getUser(name: string) {
     this.getTopArtists(name).subscribe();
     this.getTopAlbums(name).subscribe();
-    this.getTopTracks(name).subscribe(console.log);
+    this.getTopTracks(name).subscribe();
 
     return this.getInfoUser(name).pipe(
       switchMap(() => this.getRecentTracks(name, 10)),
@@ -58,8 +58,8 @@ export class UserProfileFacade {
     );
   }
 
-  public getTopTracks(name: string): Observable<any> {
-    return this.profileService.getTopTracks(name).pipe(
+  public getTopTracks(name: string, limit = 10, page = 1): Observable<ProfileTopTracks> {
+    return this.profileService.getTopTracks(name, limit, page).pipe(
       tap(tracks => this.topTracksSubject$.next(tracks))
     );
   }
