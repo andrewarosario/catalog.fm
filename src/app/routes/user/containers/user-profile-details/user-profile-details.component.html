@@ -14,27 +14,11 @@
       ></app-user-top-artists>
     </mat-tab>
     <mat-tab label="Álbuns">
-
-      <div class="item-thumbnails" *ngIf="facade.topAlbums$ | async as topAlbums">
-        <div class="grid">
-          <div *ngFor="let album of topAlbums.albums" class="info">
-            <div class="info-inner">
-              <h3 class="c__name">{{ album.name }}</h3>
-              <div class="label">
-                <span class="c__label">{{ album.artist }}</span>
-                <span class="c__label">{{ album.playcount }} Reproduções</span>
-              </div>
-            </div>
-            <img [src]="album.image">
-          </div>
-        </div>
-        <mat-paginator [length]="topAlbums.info.total"
-          [pageSize]="topAlbums.info.perPage"
-          [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
-          (page)="changeTopAlbumsPagination(profile.name, $event)"
-        ></mat-paginator>
-      </div>
-
+      <app-user-top-albums
+        [topAlbums]="facade.topAlbums$ | async"
+        (changePage)="changeTopAlbumsPagination(profile.name, $event)"
+      >
+      </app-user-top-albums>
     </mat-tab>
     <mat-tab label="Faixas">
       <app-user-top-tracks

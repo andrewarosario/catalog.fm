@@ -7,6 +7,7 @@ import { UserProfileDetailsComponent } from './containers/user-profile-details/u
 import { UserRecentTracksComponent } from './components/user-recent-tracks/user-recent-tracks.component';
 import { UserTopTracksComponent } from './components/user-top-tracks/user-top-tracks.component';
 import { UserTopArtistsComponent } from './components/user-top-artists/user-top-artists.component';
+import { UserTopAlbumsComponent } from './components/user-top-albums/user-top-albums.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
     UserProfileDetailsComponent,
     UserRecentTracksComponent,
     UserTopTracksComponent,
-    UserTopArtistsComponent
+    UserTopArtistsComponent,
+    UserTopAlbumsComponent
   ],
   imports: [
     SharedModule,
