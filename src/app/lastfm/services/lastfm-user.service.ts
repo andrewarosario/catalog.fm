@@ -38,7 +38,7 @@ export class LastfmUserService {
     return this.lastfmService.get<any>(lastfmResponse);
   }
 
-  public getUserTopArtists(user: string, page: number, limit: number, period: PeriodLastfm): Observable<LastfmTopArtistsResponse> {
+  public getUserTopArtists(user: string, limit: number, page: number, period: PeriodLastfm): Observable<LastfmTopArtistsResponse> {
 
     const lastfmResponse: LastfmHttp = {
       method: 'user.getTopArtists',
@@ -53,7 +53,7 @@ export class LastfmUserService {
     return this.lastfmService.get<any>(lastfmResponse);
   }
 
-  public getUserTopAlbums(user: string, page: number, limit: number, period: PeriodLastfm): Observable<LastfmTopAlbumsResponse> {
+  public getUserTopAlbums(user: string, limit: number, page: number, period: PeriodLastfm): Observable<LastfmTopAlbumsResponse> {
 
     const lastfmResponse: LastfmHttp = {
       method: 'user.getTopAlbums',

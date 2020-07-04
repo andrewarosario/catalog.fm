@@ -46,14 +46,14 @@ export class UserProfileFacade {
     );
   }
 
-  public getTopArtists(name: string): Observable<ProfileTopArtists> {
-    return this.profileService.getTopArtists(name).pipe(
+  public getTopArtists(name: string, limit = 10, page = 1): Observable<ProfileTopArtists> {
+    return this.profileService.getTopArtists(name, limit, page).pipe(
       tap(albums => this.topArtistsSubject$.next(albums))
     );
   }
 
-  public getTopAlbums(name: string): Observable<ProfileTopAlbums> {
-    return this.profileService.getTopAlbums(name).pipe(
+  public getTopAlbums(name: string, limit = 10, page = 1): Observable<ProfileTopAlbums> {
+    return this.profileService.getTopAlbums(name, limit, page).pipe(
       tap(albums => this.topAlbumsSubject$.next(albums))
     );
   }

@@ -22,13 +22,19 @@ export class UserProfileDetailsComponent implements OnInit {
   }
 
   public changeRecentTracksPagination(userName: string, event: PageEvent) {
-    this.facade.getRecentTracks(userName, event.pageSize, event.pageIndex + 1)
-      .subscribe(() => window.scrollTo(0, 0));
+    this.facade.getRecentTracks(userName, event.pageSize, event.pageIndex + 1).subscribe();
   }
 
   public changeTopTracksPagination(userName: string, event: PageEvent) {
-    this.facade.getTopTracks(userName, event.pageSize, event.pageIndex + 1)
-      .subscribe(() => window.scrollTo(0, 0));
+    this.facade.getTopTracks(userName, event.pageSize, event.pageIndex + 1).subscribe();
+  }
+
+  public changeTopArtistsPagination(userName: string, event: PageEvent) {
+    this.facade.getTopArtists(userName, event.pageSize, event.pageIndex + 1).subscribe();
+  }
+
+  public changeTopAlbumsPagination(userName: string, event: PageEvent) {
+    this.facade.getTopAlbums(userName, event.pageSize, event.pageIndex + 1).subscribe();
   }
 
   public openTrackOptions(track: RecentTrack) {
