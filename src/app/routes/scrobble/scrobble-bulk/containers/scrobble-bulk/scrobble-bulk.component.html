@@ -1,8 +1,12 @@
-<page-header title="Realizar Scrobbles em Bulk (Linha)"></page-header>
+<page-header
+  title="Realizar Scrobbles em Bulk"
+  subtitle="Descreva em cada linha o artista, a música e o álbum separados por hífen (-)"
+  [showBreadCrumb]="false">
+</page-header>
 
 <form [formGroup]="scrobbleForm" (submit)="scrobble()">
   <mat-form-field>
-    <mat-label>Descreva em cada linha o artista, a música e o álbum separados por hífen (-)</mat-label>
+    <mat-label>O artista e a música são obrigatórios</mat-label>
     <textarea
       matInput
       autofocus
