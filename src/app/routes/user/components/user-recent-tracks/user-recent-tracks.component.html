@@ -14,11 +14,11 @@
 
     </mat-list-item>
 
-    <mat-paginator [length]="recentTracks.info.total"
+    <mat-paginator
+      [length]="recentTracks.info.total"
       [pageSize]="recentTracks.info.perPage"
       [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
-      (page)="changePage.emit($event)"
-    >
+      (page)="changePage.emit($event)">
     </mat-paginator>
   </mat-list>
 

@@ -5,6 +5,7 @@ import { UserProfileResolver } from './resolvers/user-profile.resolver';
 import { UserProfileComponent } from './containers/user-profile/user-profile.component';
 import { UserProfileDetailsComponent } from './containers/user-profile-details/user-profile-details.component';
 import { UserRecentTracksComponent } from './components/user-recent-tracks/user-recent-tracks.component';
+import { UserTopTracksComponent } from './components/user-top-tracks/user-top-tracks.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
   declarations: [
     UserProfileComponent,
     UserProfileDetailsComponent,
-    UserRecentTracksComponent
+    UserRecentTracksComponent,
+    UserTopTracksComponent
   ],
   imports: [
     SharedModule,
