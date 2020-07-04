@@ -8,29 +8,10 @@
       ></app-user-recent-tracks>
     </mat-tab>
     <mat-tab label="Artistas">
-
-      <div class="item-thumbnails" *ngIf="facade.topArtists$ | async as topArtists">
-        <div class="grid">
-          <div *ngFor="let artist of topArtists.artists" class="info">
-            <div class="info-inner">
-              <h3 class="c__name">{{ artist.name }}</h3>
-              <div class="label">
-                <span class="c__label">{{ artist.playcount }} Reproduções</span>
-              </div>
-            </div>
-            <img [src]="artist.image">
-          </div>
-
-        </div>
-        <mat-paginator
-          [length]="topArtists.info.total"
-          [pageSize]="topArtists.info.perPage"
-          [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
-          (page)="changeTopArtistsPagination(profile.name, $event)"
-        >
-        </mat-paginator>
-      </div>
-
+      <app-user-top-artists
+        [topArtists]="facade.topArtists$ | async"
+        (changePage)="changeTopArtistsPagination(profile.name, $event)"
+      ></app-user-top-artists>
     </mat-tab>
     <mat-tab label="Álbuns">
 

@@ -1,4 +1,4 @@
-<div class="m-16">
+<div class="m-16" *ngIf="topTracks">
   <mat-list>
     <mat-list-item class="add-cursor-pointer" *ngFor="let track of topTracks.tracks" (click)="openTrackInfo.emit(track)">
       <img [src]="track.image" [alt]="track.song">
