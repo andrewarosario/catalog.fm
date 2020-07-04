@@ -29,7 +29,7 @@
     </mat-tab>
     <mat-tab label="Artistas">
 
-      <div *ngIf="facade.topArtists$ | async as topArtists">
+      <div class="item-thumbnails" *ngIf="facade.topArtists$ | async as topArtists">
         <div class="grid">
           <div *ngFor="let artist of topArtists.artists" class="info">
             <div class="info-inner">
@@ -54,7 +54,7 @@
     </mat-tab>
     <mat-tab label="Álbuns">
 
-      <div *ngIf="facade.topAlbums$ | async as topAlbums">
+      <div class="item-thumbnails" *ngIf="facade.topAlbums$ | async as topAlbums">
         <div class="grid">
           <div *ngFor="let album of topAlbums.albums" class="info">
             <div class="info-inner">
