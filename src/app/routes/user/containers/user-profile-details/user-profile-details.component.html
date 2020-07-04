@@ -1,31 +1,11 @@
 <mat-card *ngIf="facade.profile$ | async as profile">
   <mat-tab-group class="m--16">
     <mat-tab label="Últimos Scrobbles">
-      <div class="m-16">
-        <mat-list *ngIf="facade.recentTracks$ | async as recentTracks">
-          <mat-list-item class="add-cursor-pointer" *ngFor="let track of recentTracks.tracks" (click)="openTrackOptions(track)">
-            <img [src]="track.albumImage" [alt]="track.album">
-            <div mat-line> {{ track.song }} </div>
-            <div mat-line>{{ track.artist }}</div>
-            <div class="track-timestamp" mat-line>
-              <span *ngIf="track.nowPlaying" class="track-timestamp">
-                <mat-icon class="now-playing">headset</mat-icon>
-                Ouvindo agora
-              </span>
-              <small *ngIf="track.timestamp" class="track-timestamp">{{ track.timestamp | fromNow }}</small>
-            </div>
-
-          </mat-list-item>
-
-          <mat-paginator [length]="recentTracks.info.total"
-            [pageSize]="recentTracks.info.perPage"
-            [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
-            (page)="changeRecentTracksPagination(profile.name, $event)"
-          >
-          </mat-paginator>
-        </mat-list>
-
-      </div>
+      <app-user-recent-tracks
+        [recentTracks]="facade.recentTracks$ | async"
+        (openTrackInfo)="openTrackOptions($event)"
+        (changePage)="changeRecentTracksPagination(profile.name, $event)"
+      ></app-user-recent-tracks>
     </mat-tab>
     <mat-tab label="Artistas">
 

@@ -1,0 +1,25 @@
+<div class="m-16">
+  <mat-list>
+    <mat-list-item class="add-cursor-pointer" *ngFor="let track of recentTracks.tracks" (click)="openTrackInfo.emit(track)">
+      <img [src]="track.albumImage" [alt]="track.album">
+      <div mat-line> {{ track.song }} </div>
+      <div mat-line>{{ track.artist }}</div>
+      <div class="track-timestamp" mat-line>
+        <span *ngIf="track.nowPlaying" class="track-timestamp">
+          <mat-icon class="now-playing">headset</mat-icon>
+          Ouvindo agora
+        </span>
+        <small *ngIf="track.timestamp" class="track-timestamp">{{ track.timestamp | fromNow }}</small>
+      </div>
+
+    </mat-list-item>
+
+    <mat-paginator [length]="recentTracks.info.total"
+      [pageSize]="recentTracks.info.perPage"
+      [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
+      (page)="changePage.emit($event)"
+    >
+    </mat-paginator>
+  </mat-list>
+
+</div>
