@@ -11,11 +11,9 @@
     </div>
 
   </div>
-  <mat-paginator
-    [length]="topArtists.info.total"
-    [pageSize]="topArtists.info.perPage"
-    [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
-    (page)="changePage.emit($event)"
-  >
-  </mat-paginator>
+
+  <app-lastfm-paginator
+    [info]="topArtists.info"
+    (changePage)="changePage.emit($event)"
+  ></app-lastfm-paginator>
 </div>

@@ -11,15 +11,12 @@
         </span>
         <small *ngIf="track.timestamp" class="track-timestamp">{{ track.timestamp | fromNow }}</small>
       </div>
-
     </mat-list-item>
 
-    <mat-paginator
-      [length]="recentTracks.info.total"
-      [pageSize]="recentTracks.info.perPage"
-      [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
-      (page)="changePage.emit($event)">
-    </mat-paginator>
+    <app-lastfm-paginator
+      [info]="recentTracks.info"
+      (changePage)="changePage.emit($event)"
+    ></app-lastfm-paginator>
   </mat-list>
 
 </div>

@@ -11,9 +11,8 @@
       <img [src]="album.image">
     </div>
   </div>
-  <mat-paginator [length]="topAlbums.info.total"
-    [pageSize]="topAlbums.info.perPage"
-    [pageSizeOptions]="[5, 10, 20, 30, 40, 50]"
-    (page)="changePage.emit($event)"
-  ></mat-paginator>
+  <app-lastfm-paginator
+    [info]="topAlbums.info"
+    (changePage)="changePage.emit($event)"
+  ></app-lastfm-paginator>
 </div>
