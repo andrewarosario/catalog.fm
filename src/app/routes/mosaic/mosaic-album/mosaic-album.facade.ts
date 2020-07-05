@@ -17,7 +17,7 @@ export class MosaicAlbumFacade {
 
   public getImageAlbums(size: number, period: PeriodLastfm): Observable<string[]> {
     return this.profileService
-        .getTopAlbums(this.userService.user.name, 1, size, period)
+        .getTopAlbums(this.userService.user.name, size, 1, period)
         .pipe(
           map(topAlbums => topAlbums.albums.map(album => album.imageSize2)),
         );
