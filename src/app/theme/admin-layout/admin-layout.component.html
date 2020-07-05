@@ -31,6 +31,7 @@
                    [showUser]="options.showUserPanel"
                    [showHeader]="options.headerPos!=='above'"
                    (toggleCollapsed)="toggleCollapsed()"
+                   (close)="sidenav.close()"
                    (logout)="facade.logout()"
                    [toggleChecked]="options.sidenavCollapsed">
       </app-sidebar>

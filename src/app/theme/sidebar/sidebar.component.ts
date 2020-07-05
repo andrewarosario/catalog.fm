@@ -13,6 +13,7 @@ export class SidebarComponent {
   @Input() toggleChecked = false;
 
   @Output() toggleCollapsed = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
   @Output() logout = new EventEmitter();
 
   constructor() {}

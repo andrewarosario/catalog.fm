@@ -6,6 +6,6 @@
 </div>
 
 <div class="matero-sidebar-main scrollbar-none">
-  <app-user-panel *ngIf="showUser && user" [user]="user" (logout)="logout.emit()"></app-user-panel>
-  <app-sidemenu [ripple]="showToggle"></app-sidemenu>
+  <app-user-panel (closeMenu)="close.emit()" *ngIf="showUser && user" [user]="user" (logout)="logout.emit()"></app-user-panel>
+  <app-sidemenu (closeMenu)="close.emit()" [ripple]="showToggle"></app-sidemenu>
 </div>

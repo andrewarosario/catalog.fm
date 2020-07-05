@@ -3,6 +3,7 @@
       *ngFor="let menuItem of menus | async"
       [group]="menuItem.route">
     <a class="matero-sidemenu-link" [routerLink]="buildRoute([menuItem.route])"
+       (click)="closeMenu.emit()"
        *ngIf="menuItem.type === 'link'"
        matRipple [matRippleDisabled]="!ripple">
       <mat-icon class="menu-icon">{{menuItem.icon}}</mat-icon>
@@ -62,6 +63,7 @@
           *ngFor="let childLvl1 of menuItem.children"
           [group]="childLvl1.route">
         <a class="matero-sidemenu-link"
+           (click)="closeMenu.emit()"
            [routerLink]="buildRoute([menuItem.route, childLvl1.route])"
            *ngIf="childLvl1.type === 'link'"
            matRipple [matRippleDisabled]="!ripple">

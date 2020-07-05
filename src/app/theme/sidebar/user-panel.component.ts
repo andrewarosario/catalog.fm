@@ -15,13 +15,13 @@ import { User } from '@core/models/user';
       <h4 class="matero-user-panel-name">{{ user.name }}</h4>
       <h5 class="matero-user-panel-email">{{ user.profile?.realName }}</h5>
       <div class="matero-user-panel-icons">
-        <a [routerLink]="['/user', user.name]" mat-icon-button>
+        <a [routerLink]="['/user', user.name]" (click)="closeMenu.emit()" mat-icon-button>
           <mat-icon>account_circle</mat-icon>
         </a>
         <!-- <a routerLink="/profile/settings" mat-icon-button>
           <mat-icon>settings</mat-icon>
         </a> -->
-        <a (click)="logout.emit()" mat-icon-button>
+        <a (click)="logout.emit(); closeMenu.emit()" mat-icon-button>
           <mat-icon>exit_to_app</mat-icon>
         </a>
       </div>
@@ -31,4 +31,5 @@ import { User } from '@core/models/user';
 export class UserPanelComponent {
   @Input() user: User;
   @Output() logout = new EventEmitter();
+  @Output() closeMenu = new EventEmitter();
 }

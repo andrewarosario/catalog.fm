@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MenuService } from '@core';
 
 @Component({
@@ -8,6 +8,7 @@ import { MenuService } from '@core';
 export class SidemenuComponent {
   // NOTE: Ripple effect make page flashing on mobile
   @Input() ripple = false;
+  @Output() closeMenu = new EventEmitter();
 
   menus = this.menuService.getAll();
 
