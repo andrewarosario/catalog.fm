@@ -15,9 +15,8 @@ const routes: Routes = [
     component: UserProfileComponent,
     resolve: { user: UserProfileResolver },
     children: [
-      { path: '', redirectTo: 'recent-tracks', pathMatch: 'full' },
       {
-        path: 'recent-tracks',
+        path: '',
         component: UserProfileDetailsComponent,
       },
     ]
