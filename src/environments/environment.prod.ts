@@ -3,7 +3,7 @@ export const environment = {
   production: true,
   useHash: false,
   hmr: false,
-  apiKey: 'ace63c61153c7d8bc456af3f054b8df4',
-  apiSecret: '237fa9131fdc42dd9a2d0c02ef36937f',
+  apiKey: '86c10d742e10e0fca5fee5e69612c848',
+  apiSecret: '216885feaf60bbe7104e6e1dcb3f675e',
   baseUrl: 'https://catalog-fm.web.app',
 };
