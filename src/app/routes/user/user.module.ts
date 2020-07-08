@@ -8,6 +8,7 @@ import { UserRecentTracksComponent } from './components/user-recent-tracks/user-
 import { UserTopTracksComponent } from './components/user-top-tracks/user-top-tracks.component';
 import { UserTopArtistsComponent } from './components/user-top-artists/user-top-artists.component';
 import { UserTopAlbumsComponent } from './components/user-top-albums/user-top-albums.component';
+import { UserPeriodsComponent } from './components/user-periods/user-periods.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
     UserRecentTracksComponent,
     UserTopTracksComponent,
     UserTopArtistsComponent,
-    UserTopAlbumsComponent
+    UserTopAlbumsComponent,
+    UserPeriodsComponent
   ],
   imports: [
     SharedModule,

@@ -1,0 +1,7 @@
+<div class="period">
+  <mat-form-field class="period-select">
+    <mat-select [value]="info.period" name="period" (valueChange)="changePeriod.emit($event)">
+      <mat-option *ngFor="let period of periods" [value]="period.value">{{ period.text }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
