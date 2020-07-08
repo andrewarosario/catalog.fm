@@ -3,6 +3,7 @@ import { ProfileService } from '@shared/services/usecases/profile.service';
 import { tap, switchMap } from 'rxjs/operators';
 import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/models/profile';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { PeriodLastfm } from '@core/models/periods';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class UserProfileFacade {
     this.getTopTracks(name).subscribe();
 
     return this.getInfoUser(name).pipe(
-      switchMap(() => this.getRecentTracks(name, 10)),
+      switchMap(() => this.getRecentTracks(name)),
     );
   }
 
@@ -40,26 +41,26 @@ export class UserProfileFacade {
     );
   }
 
-  public getRecentTracks(name: string, limit = 10, page = 1): Observable<ProfileRecentTracks> {
+  public getRecentTracks(name: string, limit = 20, page = 1): Observable<ProfileRecentTracks> {
     return this.profileService.getRecentTracks(name, limit, page).pipe(
       tap(recent => this.recentTracksSubject$.next(recent))
     );
   }
 
-  public getTopArtists(name: string, limit = 10, page = 1): Observable<ProfileTopArtists> {
-    return this.profileService.getTopArtists(name, limit, page).pipe(
+  public getTopArtists(name: string, limit = 10, page = 1, period = PeriodLastfm.Week): Observable<ProfileTopArtists> {
+    return this.profileService.getTopArtists(name, limit, page, period).pipe(
       tap(albums => this.topArtistsSubject$.next(albums))
     );
   }
 
-  public getTopAlbums(name: string, limit = 10, page = 1): Observable<ProfileTopAlbums> {
-    return this.profileService.getTopAlbums(name, limit, page).pipe(
+  public getTopAlbums(name: string, limit = 10, page = 1, period = PeriodLastfm.OneMonth): Observable<ProfileTopAlbums> {
+    return this.profileService.getTopAlbums(name, limit, page, period).pipe(
       tap(albums => this.topAlbumsSubject$.next(albums))
     );
   }
 
-  public getTopTracks(name: string, limit = 10, page = 1): Observable<ProfileTopTracks> {
-    return this.profileService.getTopTracks(name, limit, page).pipe(
+  public getTopTracks(name: string, limit = 10, page = 1, period = PeriodLastfm.OneMonth): Observable<ProfileTopTracks> {
+    return this.profileService.getTopTracks(name, limit, page, period).pipe(
       tap(tracks => this.topTracksSubject$.next(tracks))
     );
   }

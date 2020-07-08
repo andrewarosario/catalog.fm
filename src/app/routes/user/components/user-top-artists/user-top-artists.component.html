@@ -1,19 +1,25 @@
-<div class="item-thumbnails" *ngIf="topArtists">
-  <div class="grid">
-    <div *ngFor="let artist of topArtists.artists" class="info">
-      <div class="info-inner">
-        <h3 class="c__name">{{ artist.name }}</h3>
-        <div class="label">
-          <span class="c__label">{{ artist.playcount }} Reproduções</span>
+<ng-container *ngIf="topArtists">
+  <app-user-periods
+    [info]="topArtists.info"
+    (changePeriod)="changePeriod.emit($event)"
+  ></app-user-periods>
+  <div class="item-thumbnails">
+    <div class="grid">
+      <div *ngFor="let artist of topArtists.artists" class="info">
+        <div class="info-inner">
+          <h3 class="c__name">{{ artist.name }}</h3>
+          <div class="label">
+            <span class="c__label">{{ artist.playcount }} Reproduções</span>
+          </div>
         </div>
+        <img [src]="artist.image">
       </div>
-      <img [src]="artist.image">
+
     </div>
 
+    <app-lastfm-paginator
+      [info]="topArtists.info"
+      (changePage)="changePage.emit($event)"
+    ></app-lastfm-paginator>
   </div>
-
-  <app-lastfm-paginator
-    [info]="topArtists.info"
-    (changePage)="changePage.emit($event)"
-  ></app-lastfm-paginator>
-</div>
+</ng-container>

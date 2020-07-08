@@ -10,23 +10,24 @@
     <mat-tab label="Artistas">
       <app-user-top-artists
         [topArtists]="facade.topArtists$ | async"
+        (changePeriod)="changeTopArtistsPeriod(profile.name, $event)"
         (changePage)="changeTopArtistsPagination(profile.name, $event)"
       ></app-user-top-artists>
     </mat-tab>
     <mat-tab label="Álbuns">
       <app-user-top-albums
         [topAlbums]="facade.topAlbums$ | async"
+        (changePeriod)="changeTopAlbumsPeriod(profile.name, $event)"
         (changePage)="changeTopAlbumsPagination(profile.name, $event)"
-      >
-      </app-user-top-albums>
+      ></app-user-top-albums>
     </mat-tab>
     <mat-tab label="Faixas">
       <app-user-top-tracks
         [topTracks]="facade.topTracks$ | async"
         (openTrackInfo)="openTrackOptions($event)"
+        (changePeriod)="changeTopTracksPeriod(profile.name, $event)"
         (changePage)="changeTopTracksPagination(profile.name, $event)"
-      >
-      </app-user-top-tracks>
+      ></app-user-top-tracks>
     </mat-tab>
   </mat-tab-group>
 </mat-card>

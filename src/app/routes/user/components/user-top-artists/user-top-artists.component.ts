@@ -1,19 +1,17 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { ProfileTopArtists } from '@core/models/profile';
 import { PageEvent } from '@angular/material/paginator';
+import { PeriodLastfm } from '@core/models/periods';
 
 @Component({
   selector: 'app-user-top-artists',
   templateUrl: './user-top-artists.component.html',
   styleUrls: ['./user-top-artists.component.scss']
 })
-export class UserTopArtistsComponent implements OnInit {
+export class UserTopArtistsComponent {
 
   @Input() public topArtists: ProfileTopArtists;
   @Output() public changePage = new EventEmitter<PageEvent>();
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  @Output() public changePeriod = new EventEmitter<PeriodLastfm>();
 
 }

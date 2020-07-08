@@ -5,6 +5,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetInfoTrackComponent } from '@shared/components/bottom-sheet-info-track/bottom-sheet-info-track.component';
 import { RecentTrack } from '@core/models/profile';
 import { take } from 'rxjs/operators';
+import { PeriodLastfm } from '@core/models/periods';
 
 @Component({
   selector: 'app-user-profile-details',
@@ -35,6 +36,18 @@ export class UserProfileDetailsComponent implements OnInit {
 
   public changeTopAlbumsPagination(userName: string, event: PageEvent) {
     this.facade.getTopAlbums(userName, event.pageSize, event.pageIndex + 1).subscribe();
+  }
+
+  public changeTopAlbumsPeriod(userName: string, period: PeriodLastfm) {
+    this.facade.getTopAlbums(userName, 10, 1, period).subscribe();
+  }
+
+  public changeTopTracksPeriod(userName: string, period: PeriodLastfm) {
+    this.facade.getTopTracks(userName, 10, 1, period).subscribe();
+  }
+
+  public changeTopArtistsPeriod(userName: string, period: PeriodLastfm) {
+    this.facade.getTopArtists(userName, 10, 1, period).subscribe();
   }
 
   public openTrackOptions(track: RecentTrack) {

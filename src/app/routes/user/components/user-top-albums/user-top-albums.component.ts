@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProfileTopAlbums } from '@core/models/profile';
 import { PageEvent } from '@angular/material/paginator';
+import { PeriodLastfm } from '@core/models/periods';
 
 @Component({
   selector: 'app-user-top-albums',
@@ -11,6 +12,7 @@ export class UserTopAlbumsComponent implements OnInit {
 
   @Input() public topAlbums: ProfileTopAlbums;
   @Output() public changePage = new EventEmitter<PageEvent>();
+  @Output() public changePeriod = new EventEmitter<PeriodLastfm>();
   constructor() { }
 
   ngOnInit(): void {
