@@ -32,19 +32,19 @@ export class ProfileService {
             forkJoin(res.topartists.artist.map(a => this.theAudioDbService.getArtistInfo(a.name)))
           );
       }),
-      map(([lastfmResult, theAudioDbResult]) => this.adapter.adaptLastfmTopArtistsToProfileTopArtist(lastfmResult, theAudioDbResult)),
+      map(([lastfmResult, theAudioDbResult]) => this.adapter.adaptLastfmTopArtistsToProfileTopArtist(lastfmResult, theAudioDbResult, period)),
     );
   }
 
   getTopTracks(userName: string, page = 1, limit = 10, period = PeriodLastfm.Week): Observable<ProfileTopTracks> {
     return this.userLastfmService.getUserTopTracks(userName, page, limit, period).pipe(
-      map(response => this.adapter.adaptLastfmTopTracksToProfileTopTracks(response)),
+      map(response => this.adapter.adaptLastfmTopTracksToProfileTopTracks(response, period)),
     );
   }
 
   getTopAlbums(userName: string, page = 1, limit = 8, period = PeriodLastfm.Week): Observable<ProfileTopAlbums> {
     return this.userLastfmService.getUserTopAlbums(userName, page, limit, period).pipe(
-      map(response => this.adapter.adaptLastfmTopAlbumsToProfileTopAlbums(response))
+      map(response => this.adapter.adaptLastfmTopAlbumsToProfileTopAlbums(response, period))
     );
   }
 

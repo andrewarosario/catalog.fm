@@ -1,3 +1,5 @@
+import { PeriodLastfm } from './periods';
+
 export interface Profile {
   name: string;
   realName: string;
@@ -13,6 +15,7 @@ export interface InfoResult {
   perPage: string;
   total: string;
   totalPages: string;
+  period?: PeriodLastfm;
 }
 
 export interface ProfileRecentTracks {

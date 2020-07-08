@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/models/profile';
 import { ALBUM_IMAGE_DEFAULT, ARTIST_IMAGE_DEFAULT } from '@core/models/default';
+import { PeriodLastfm } from '@core/models/periods';
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +36,14 @@ export class ProfileAdapterService {
     };
   }
 
-  public adaptLastfmTopAlbumsToProfileTopAlbums(response: LastfmTopAlbumsResponse): ProfileTopAlbums {
+  public adaptLastfmTopAlbumsToProfileTopAlbums(
+    response: LastfmTopAlbumsResponse,
+    period: PeriodLastfm
+  ): ProfileTopAlbums {
     const topAlbums = response.topalbums;
 
     return {
-      info: topAlbums['@attr'],
+      info: { ...topAlbums['@attr'], period },
       albums: topAlbums.album.map(album => ({
         artist: album.artist.name,
         name: album.name,
@@ -52,12 +56,13 @@ export class ProfileAdapterService {
 
   public adaptLastfmTopArtistsToProfileTopArtist(
     lastfmResponse: LastfmTopArtistsResponse,
-    theAudioDbResponse: TheAudioDbArtist[]
+    theAudioDbResponse: TheAudioDbArtist[],
+    period: PeriodLastfm
   ): ProfileTopArtists {
     const topArtists = lastfmResponse.topartists;
 
     return {
-      info: topArtists['@attr'],
+      info: { ...topArtists['@attr'], period },
       artists: topArtists.artist.map((artist, index) => ({
         name: artist.name,
         playcount: +artist.playcount,
@@ -66,11 +71,14 @@ export class ProfileAdapterService {
     };
   }
 
-  public adaptLastfmTopTracksToProfileTopTracks(response: LastfmTopTracksResponse): ProfileTopTracks {
+  public adaptLastfmTopTracksToProfileTopTracks(
+    response: LastfmTopTracksResponse,
+    period: PeriodLastfm
+  ): ProfileTopTracks {
     const topTracks = response.toptracks;
 
     return {
-      info: topTracks['@attr'],
+      info: { ...topTracks['@attr'], period },
       tracks: topTracks.track.map(track => ({
           artist: track.artist.name,
           song: track.name,
