@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ScrobbleBulkFacade } from '../../scrobble-bulk.facade';
-import { ScrobbleResponseType } from '@core/models/scrobble-response-type';
+import { ScrobbleResponseType } from '@core/scrobble/models/scrobble-response-type';
 import { finalize } from 'rxjs/operators';
 import { MessageService } from '@shared/services/message.service';
 

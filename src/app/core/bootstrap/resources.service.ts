@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Menu } from './menu.service';
-import { IndexedDbScrobbles } from '@indexed-db/tables/indexed-db-scrobbles';
+import { IndexedDbScrobbles } from '@core/indexed-db/tables/indexed-db-scrobbles';
 
 @Injectable({
   providedIn: 'root'

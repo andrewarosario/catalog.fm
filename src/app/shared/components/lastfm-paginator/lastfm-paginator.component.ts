@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { InfoResult } from '@core/models/profile';
+import { InfoResult } from '@core/profile/models/profile';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({

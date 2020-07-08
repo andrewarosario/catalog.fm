@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ProfileService } from '@shared/services/usecases/profile.service';
-import { UserService } from '@core/services/user.service';
-import { PeriodLastfm } from '@core/models/periods';
+import { ProfileService } from '@core/profile/services/profile.service';
+import { UserService } from '@core/user/services/user.service';
+import { PeriodLastfm } from '@core/lastfm/models/periods';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MessageService } from '@shared/services/message.service';
-import { ScrobbleResponseType } from '@core/models/scrobble-response-type';
+import { ScrobbleResponseType } from '@core/scrobble/models/scrobble-response-type';
 import { ScrobbleService } from './scrobble.service';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { PERIODS_LAST_FM, PeriodLastfm } from '@core/models/periods';
-import { InfoResult } from '@core/models/profile';
+import { PERIODS_LAST_FM, PeriodLastfm } from '@core/lastfm/models/periods';
+import { InfoResult } from '@core/profile/models/profile';
 
 @Component({
   selector: 'app-user-periods',

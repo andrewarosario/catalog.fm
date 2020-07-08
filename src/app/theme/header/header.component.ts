@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import * as screenfull from 'screenfull';
-import { User } from '@core/models/user';
+import { User } from '@core/user/models/user';
 
 @Component({
   selector: 'app-header',

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
-import { map, tap, switchMap, mergeMap } from 'rxjs/operators';
+import { LastfmUserService } from '@core/lastfm/services/lastfm-user.service';
+import { map, switchMap } from 'rxjs/operators';
 import { Observable, forkJoin, of } from 'rxjs';
-import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/models/profile';
-import { PeriodLastfm } from '@core/models/periods';
-import { ProfileAdapterService } from '../adapters/profile-adapter.service';
+import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/profile/models/profile';
+import { PeriodLastfm } from '@core/lastfm/models/periods';
+import { ProfileAdapterService } from './profile-adapter.service';
 import { TheAudioDbService } from 'app/the-audio-db/services/the-audio-db.service';
 
 @Injectable({

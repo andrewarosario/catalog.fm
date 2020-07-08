@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PERIODS_LAST_FM, PeriodLastfm } from '@core/models/periods';
+import { PERIODS_LAST_FM, PeriodLastfm } from '@core/lastfm/models/periods';
 import { MosaicAlbumFacade } from '../../mosaic-album.facade';
 
 let downloaded = 0;

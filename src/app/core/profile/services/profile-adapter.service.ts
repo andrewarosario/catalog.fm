@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/models/profile';
+import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/profile/models/profile';
 import { ALBUM_IMAGE_DEFAULT, ARTIST_IMAGE_DEFAULT } from '@core/models/default';
-import { PeriodLastfm } from '@core/models/periods';
+import { PeriodLastfm } from '@core/lastfm/models/periods';
 
 @Injectable({
   providedIn: 'root'

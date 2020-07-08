@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ProfileTopTracks, TopTrack } from '@core/models/profile';
+import { ProfileTopTracks, TopTrack } from '@core/profile/models/profile';
 import { PageEvent } from '@angular/material/paginator';
-import { PeriodLastfm } from '@core/models/periods';
+import { PeriodLastfm } from '@core/lastfm/models/periods';
 
 @Component({
   selector: 'app-user-top-tracks',

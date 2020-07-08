@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ProfileRecentTracks, RecentTrack } from '@core/models/profile';
+import { ProfileRecentTracks, RecentTrack } from '@core/profile/models/profile';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({

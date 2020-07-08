@@ -3,7 +3,7 @@ import { LastfmService } from './helpers/lastfm.service';
 import { LastfmHttp } from '../models/last-fm-http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import { PeriodLastfm } from '@core/models/periods';
+import { PeriodLastfm } from '@core/lastfm/models/periods';
 
 @Injectable({
   providedIn: 'root'

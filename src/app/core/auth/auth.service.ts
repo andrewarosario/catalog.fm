@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { LastfmAuthService } from '../../lastfm/services/lastfm-auth.service';
-import { UserService } from './user.service';
+import { UserService } from '../user/services/user.service';
 import { tap, switchMap, map } from 'rxjs/operators';
-import { LocalStorageService } from './local-storage.service';
-import { User } from '../models/user';
+import { LocalStorageService } from '../../shared/services/local-storage.service';
+import { User } from '../user/models/user';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
-import { ProfileService } from '@shared/services/usecases/profile.service';
+import { ProfileService } from '@core/profile/services/profile.service';
+import { LastfmAuthService } from '../lastfm/services/lastfm-auth.service';
 
 @Injectable({
   providedIn: 'root'

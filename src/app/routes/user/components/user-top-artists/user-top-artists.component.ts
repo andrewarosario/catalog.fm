@@ -1,7 +1,7 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { ProfileTopArtists } from '@core/models/profile';
+import { ProfileTopArtists } from '@core/profile/models/profile';
 import { PageEvent } from '@angular/material/paginator';
-import { PeriodLastfm } from '@core/models/periods';
+import { PeriodLastfm } from '@core/lastfm/models/periods';
 
 @Component({
   selector: 'app-user-top-artists',

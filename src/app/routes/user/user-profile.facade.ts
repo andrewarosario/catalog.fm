@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ProfileService } from '@shared/services/usecases/profile.service';
+import { ProfileService } from '@core/profile/services/profile.service';
 import { tap, switchMap } from 'rxjs/operators';
-import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/models/profile';
+import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/profile/models/profile';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { PeriodLastfm } from '@core/models/periods';
+import { PeriodLastfm } from '@core/lastfm/models/periods';
 
 @Injectable({
   providedIn: 'root'

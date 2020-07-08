@@ -1,5 +1,5 @@
 // Services
-export * from './services/storage.service';
+export * from './services/local-storage.service';
 export * from './services/directionality.service';
 // Utils
 export * from './utils/colors';

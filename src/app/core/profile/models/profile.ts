@@ -1,4 +1,4 @@
-import { PeriodLastfm } from './periods';
+import { PeriodLastfm } from '../../lastfm/models/periods';
 
 export interface Profile {
   name: string;

@@ -3,9 +3,9 @@ import { UserProfileFacade } from '../../user-profile.facade';
 import { PageEvent } from '@angular/material/paginator';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetInfoTrackComponent } from '@shared/components/bottom-sheet-info-track/bottom-sheet-info-track.component';
-import { RecentTrack } from '@core/models/profile';
+import { RecentTrack } from '@core/profile/models/profile';
 import { take } from 'rxjs/operators';
-import { PeriodLastfm } from '@core/models/periods';
+import { PeriodLastfm } from '@core/lastfm/models/periods';
 
 @Component({
   selector: 'app-user-profile-details',

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { LastfmUserService } from '@lastfm/services/lastfm-user.service';
-import { UserService } from '@core/services/user.service';
+import { LastfmUserService } from '@core/lastfm/services/lastfm-user.service';
+import { UserService } from '@core/user/services/user.service';
 import * as moment from 'moment';
-import { IndexedDbScrobbles } from '@indexed-db/tables/indexed-db-scrobbles';
+import { IndexedDbScrobbles } from '@core/indexed-db/tables/indexed-db-scrobbles';
 import { mapTo, switchMap, tap, filter } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
 import { MessageService } from '@shared/services/message.service';
-import { AuthOnlineService } from '@core/services/auth-online.service';
-import { ScrobbleResponseType } from '@core/models/scrobble-response-type';
+import { AuthOnlineService } from '@core/auth/auth-online.service';
+import { ScrobbleResponseType } from '@core/scrobble/models/scrobble-response-type';
 
 @Injectable({
   providedIn: 'root'

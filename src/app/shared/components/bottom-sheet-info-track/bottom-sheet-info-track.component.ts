@@ -1,6 +1,6 @@
 import { Component, Inject, EventEmitter } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { ScrobbleMessageService } from '@shared/services/usecases/scrobble-message.service';
+import { ScrobbleMessageService } from '@core/scrobble/services/scrobble-message.service';
 
 @Component({
   selector: 'app-bottom-sheet-info-track',

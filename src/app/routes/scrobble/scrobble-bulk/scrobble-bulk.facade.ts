@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
-import { ScrobbleService } from '../../../shared/services/usecases/scrobble.service';
+import { ScrobbleService } from '../../../core/scrobble/services/scrobble.service';
 import { map } from 'rxjs/operators';
-import { ScrobbleResponseType } from '@core/models/scrobble-response-type';
+import { ScrobbleResponseType } from '@core/scrobble/models/scrobble-response-type';
 
 @Injectable({
   providedIn: 'root'

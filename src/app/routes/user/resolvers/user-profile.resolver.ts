@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { ProfileService } from '@shared/services/usecases/profile.service';
-import { ProfileRecentTracks } from '@core/models/profile';
+import { ProfileService } from '@core/profile/services/profile.service';
+import { ProfileRecentTracks } from '@core/profile/models/profile';
 import { Observable } from 'rxjs';
 import { UserProfileFacade } from '../user-profile.facade';
 
