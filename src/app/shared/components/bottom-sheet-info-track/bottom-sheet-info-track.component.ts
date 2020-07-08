@@ -12,7 +12,7 @@ export class BottomSheetInfoTrackComponent {
   public onScrobble = new EventEmitter();
 
   constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: TrackScrobble,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: TrackModel,
     private scrobbleMessageService: ScrobbleMessageService
   ) {}
 

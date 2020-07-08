@@ -82,8 +82,9 @@ export class ProfileAdapterService {
       tracks: topTracks.track.map(track => ({
           artist: track.artist.name,
           song: track.name,
+          album: '',
           playcount: +track.playcount,
-          image: track.image[1]['#text'],
+          albumImage: track.image[1]['#text'],
           imageSize2: track.image[2]['#text'],
           duration: +track.duration
         }))

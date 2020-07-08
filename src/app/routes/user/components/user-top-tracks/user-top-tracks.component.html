@@ -5,7 +5,7 @@
   ></app-user-periods>
   <mat-list>
     <mat-list-item class="add-cursor-pointer" *ngFor="let track of topTracks.tracks" (click)="openTrackInfo.emit(track)">
-      <img [src]="track.image" [alt]="track.song">
+      <img [src]="track.albumImage" [alt]="track.song">
       <div mat-line> {{ track.song }} </div>
       <div mat-line>{{ track.artist }}</div>
       <div mat-line>{{ track.playcount }} Reproduções</div>

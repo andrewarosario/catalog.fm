@@ -79,3 +79,7 @@ interface LastfmTopTracks {
 interface LastfmTopTracksResponse {
   toptracks: LastfmTopTracks;
 }
+
+interface TrackModel extends TrackScrobble {
+  albumImage: string;
+}

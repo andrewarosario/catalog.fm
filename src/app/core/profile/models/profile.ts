@@ -23,11 +23,6 @@ export interface ProfileRecentTracks {
   tracks: RecentTrack[];
 }
 
-export interface RecentTrack extends TrackScrobble {
-  albumImage: string;
-  nowPlaying: boolean;
-}
-
 export interface ProfileTopAlbums {
   info: InfoResult;
   albums: TopAlbum[];
@@ -57,11 +52,12 @@ export interface TopArtist {
   playcount: number;
 }
 
-export interface TopTrack {
-  artist: string;
-  song: string;
+export interface TopTrack extends TrackModel {
   playcount: number;
-  image: string;
   imageSize2: string;
   duration: number;
+}
+
+export interface RecentTrack extends TrackModel {
+  nowPlaying: boolean;
 }

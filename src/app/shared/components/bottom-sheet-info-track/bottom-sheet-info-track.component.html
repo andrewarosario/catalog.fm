@@ -1,18 +1,14 @@
+<div class="track-info">
+  <img [src]="data.albumImage" [alt]="data.album">
+  <div>
+    <div>Faixa: {{ data.song }}</div>
+    <div>Artista: {{ data.artist }}</div>
+    <div *ngIf="data.album">Álbum: {{ data.album }}</div>
+  </div>
+</div>
 <mat-nav-list>
   <a (click)="scrobble()" mat-list-item>
     <mat-icon matListIcon>send</mat-icon>
     <span mat-line>Scrobblar Faixa</span>
   </a>
-  <!-- <a href="https://docs.google.com/" mat-list-item>
-    <span mat-line>Google Docs</span>
-    <span mat-line>Embed in a document</span>
-  </a>
-  <a href="https://plus.google.com/" mat-list-item>
-    <span mat-line>Google Plus</span>
-    <span mat-line>Share with your friends</span>
-  </a>
-  <a href="https://hangouts.google.com/" mat-list-item>
-    <span mat-line>Google Hangouts</span>
-    <span mat-line>Show to your coworkers</span>
-  </a> -->
 </mat-nav-list>

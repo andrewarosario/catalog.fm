@@ -1,0 +1,8 @@
+.track-info {
+  display: flex;
+  align-items: center;
+
+  & > img {
+    margin-right: 12px;
+  }
+}
