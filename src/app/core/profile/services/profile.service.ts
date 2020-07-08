@@ -5,7 +5,7 @@ import { Observable, forkJoin, of } from 'rxjs';
 import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/profile/models/profile';
 import { PeriodLastfm } from '@core/lastfm/models/periods';
 import { ProfileAdapterService } from './profile-adapter.service';
-import { TheAudioDbService } from 'app/the-audio-db/services/the-audio-db.service';
+import { TheAudioDbService } from '@core/the-audio-db/services/the-audio-db.service';
 
 @Injectable({
   providedIn: 'root'
