@@ -31,7 +31,7 @@ export class LastfmArtistService {
     return this.lastfmService.get<AlbumInfoResponse>(lastfmResponse);
   }
 
-  async search(artistSearch: string, limit = 10, page = 1): Observable<ArtistSearchResponse> {
+  search(artistSearch: string, limit = 10, page = 1): Observable<ArtistSearchResponse> {
 
     const lastfmResponse: LastfmHttp = {
       method: 'artist.search',

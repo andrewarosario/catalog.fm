@@ -22,6 +22,11 @@ const routes: Routes = [
         data: { title: 'Usuário', titleI18n: 'Usuário' },
       },
       {
+        path: 'artist',
+        loadChildren: () => import('./artist/artist.module').then(m => m.ArtistModule),
+        data: { title: 'Artista', titleI18n: 'Artista' },
+      },
+      {
         path: 'dashboard',
         component: DashboardComponent,
         data: { title: 'Dashboard', titleI18n: 'dashboard' },

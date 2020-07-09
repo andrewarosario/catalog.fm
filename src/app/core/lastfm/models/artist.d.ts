@@ -25,6 +25,9 @@ interface LastfmArtist extends LastfmArtistMatch {
       rel: string;
     }[]
   };
+  tags: any;
+  ontour: string;
+  bio: any;
 }
 
 interface ArtistSearchResponse {
