@@ -9,7 +9,7 @@
         <div class="info-inner">
           <h3 class="c__name">{{ artist.name }}</h3>
           <div class="label">
-            <span class="c__label">{{ artist.playcount }} Reproduções</span>
+            <span class="c__label">{{ artist.playcount | textPlaysPlural}}</span>
           </div>
         </div>
         <img [src]="artist.image">

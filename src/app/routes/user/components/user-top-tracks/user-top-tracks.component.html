@@ -8,7 +8,7 @@
       <img [src]="track.albumImage" [alt]="track.song">
       <div mat-line> {{ track.song }} </div>
       <div mat-line>{{ track.artist }}</div>
-      <div mat-line>{{ track.playcount }} Reproduções</div>
+      <div mat-line>{{ track.playcount | textPlaysPlural }}</div>
 
     </mat-list-item>
 
