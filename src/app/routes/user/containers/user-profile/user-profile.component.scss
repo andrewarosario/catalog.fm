@@ -1,0 +1,29 @@
+.user {
+  display: block;
+}
+
+.user-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.user-name {
+  margin-left: 20px;
+}
+
+@media (max-width: 380px) {
+  .user-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-name {
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+

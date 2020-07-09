@@ -1,38 +1,35 @@
-<!-- <page-header class="p-t-32 p-b-48 m-b--24 bg-gray-900"
-             [title]="'Personal Profile'"
-             [showBreadCrumb]="false">
-</page-header> -->
-
 <div *ngIf="facade.profile$ | async as profile" fxLayout="row wrap" class="matero-row">
-  <div class="matero-col" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33" fxFlex.gt-md="25">
+  <div class="matero-col" fxFlex="100" fxFlex.gt-xs="100" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-lg="33">
     <mat-card>
-      <div class="text-center">
-        <img class="m-b-8 r-full" [src]="profile.image" alt="" width="80">
-        <h2 class="m-t-0 m-b-8 f-w-400">{{ profile.name }}</h2>
-        <p class="m-t-0 m-b-8">{{ profile.realName }}</p>
-        <!-- <mat-chip-list>
-          <mat-chip color="accent">Papadum</mat-chip>
+      <div class="user">
+        <div class="user-details">
+          <img class="m-b-8 r-full" [src]="profile.image" alt="" width="80">
+          <div class="user-name">
+            <h2 class="m-t-0 m-b-8 f-w-400">{{ profile.name }}</h2>
+            <p class="m-t-0 m-b-8">{{ profile.realName }}</p>
+          </div>
+        </div>
 
-        </mat-chip-list> -->
-        <!-- <p class="m-t-0 text-grey-500">I like reading, writing and drawing.</p> -->
-
-        <!-- <a mat-raised-button color="primary" href="https://github.com/nzbin" target="_blank">Follow
-          Me</a>
-        <button mat-raised-button color="accent" class="m-l-8">Contact Me</button> -->
+        <!-- <p class="m-t-0 text-grey-500">I like reading, writing and drawing.</p>
+        <div class="user-actions">
+          <a mat-raised-button color="primary" href="https://github.com/nzbin" target="_blank">Follow
+            Me</a>
+          <button mat-raised-button color="accent" class="m-l-8">Contact Me</button>
+        </div> -->
       </div>
       <!-- <mat-nav-list class="m-x--16 m-b--16 m-t-16">
         <mat-divider inset></mat-divider>
-        <a mat-list-item routerLink="/profile/overview">
-          <mat-icon class="icon-18 m-r-8">account_circle</mat-icon> Overview
+        <a mat-list-item [routerLink]="['/user', profile.name]">
+          <mat-icon class="icon-18 m-r-8">library_music</mat-icon>Biblioteca
         </a>
         <mat-divider inset></mat-divider>
         <a mat-list-item routerLink="/profile/settings">
-          <mat-icon class="icon-18 m-r-8">settings</mat-icon> Settings
+          <mat-icon class="icon-18 m-r-8">settings</mat-icon> Configurações
         </a>
       </mat-nav-list> -->
     </mat-card>
   </div>
-  <div class="matero-col" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="66.67" fxFlex.gt-md="75">
+  <div class="matero-col" fxFlex="100" fxFlex.gt-xs="100" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-lg="66.67">
     <router-outlet></router-outlet>
   </div>
 </div>
