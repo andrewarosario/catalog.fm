@@ -1,84 +1,18 @@
 <div class="matero-row" fxLayout="row wrap" *ngIf="facade.artist$ | async as artist">
 
-  <!-- Statistics -->
-  <!-- <div class="matero-col" fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100"
-       *ngFor="let stat of stats">
-    <mat-card [ngClass]="['text-white', stat.color]">
-      <mat-card-title class="f-s-12 f-w-100">{{stat.title}}</mat-card-title>
-      <mat-card-content>
-        <h2>{{stat.amount}}</h2>
-        <mtx-progress [value]="stat.progress.value"
-                      height="2px"
-                      foreground="rgba(255,255,255,1)"
-                      background='rgba(0,0,0,.5)'>
-        </mtx-progress>
-        <small class="text-muted">Monthly</small>
-      </mat-card-content>
-    </mat-card>
-  </div> -->
-
-  <!-- Charts -->
-  <!-- <div class="matero-col" fxFlex="100" fxFlex.gt-sm="60">
-    <mat-card>
-      <mat-card-subtitle>Traffic</mat-card-subtitle>
-      <div id="chart1"></div>
-    </mat-card>
-  </div>
-  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="40">
-    <mat-card>
-      <mat-card-subtitle>Weekly Revenue</mat-card-subtitle>
-      <div id="chart2"></div>
-    </mat-card>
-  </div> -->
-
-  <!-- Others -->
   <div class="matero-col" fxFlex.gt-sm="50" fxFlex="100">
     <mat-card>
-      <mat-tab-group class="m--16">
-        <mat-tab label="First">
-          <div class="m-16">
-            <img class="d-block w-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRS1uIrcSaXWydzvGKZyJfjv1fcWhCl4_ZzeA&usqp=CAU" alt="">
-            <h2>{{ artist.name }}</h2>
-            <p>{{ artist.biography }}</p>
-          </div>
-        </mat-tab>
-        <mat-tab label="Second">
-          <div class="m-16">
-            <img class="d-block w-full" src="assets/images/pixabay/8.jpg" alt="">
-            <h3>Vestibulum vitae diam nec odio dapibus placerat. Ut ut lorem justo.</h3>
-            <p>
-              Fusce bibendum augue nec fermentum tempus. Sed laoreet dictum tempus. Aenean ac sem
-              quis nulla malesuada
-              volutpat. Nunc vitae urna pulvinar velit commodo cursus. Nullam eu felis quis diam
-              adipiscing hendrerit
-              vel ac turpis. Nam mattis fringilla euismod. Donec eu ipsum sit amet mauris iaculis
-              aliquet. Quisque sit
-              amet feugiat odio. Cras convallis lorem at libero lobortis, placerat lobortis sapien
-              lacinia. Duis sit
-              amet elit bibendum sapien dignissim bibendum.</p>
+      <div class="m-16">
+        <img class="d-block w-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRS1uIrcSaXWydzvGKZyJfjv1fcWhCl4_ZzeA&usqp=CAU" alt="">
+        <h2>{{ artist.name }}</h2>
+        <mat-chip-list>
+          <mat-chip class="artist-tag" *ngFor="let tag of artist.tags">{{ tag }}</mat-chip>
+        </mat-chip-list>
+        <p>{{ artist.biography }}</p>
+      </div>
 
-          </div>
-        </mat-tab>
-        <mat-tab label="Third">
-          <div class="m-16">
-            <img class="d-block w-full" src="assets/images/pixabay/16.jpg" alt="">
-            <h3>Maecenas eget turpis luctus, scelerisque arcu id, iaculis urna. Interdum et
-              malesuada fames ac ante
-              ipsum primis in faucibus.</h3>
-            <p>
-              Morbi placerat est nec pharetra placerat. Ut laoreet nunc accumsan orci aliquam
-              accumsan. Maecenas
-              volutpat dolor vitae sapien ultricies fringilla. Suspendisse vitae orci sed nibh
-              ultrices tristique.
-              Aenean in ante eget urna semper imperdiet. Pellentesque sagittis a nulla at
-              scelerisque. Nam augue nulla,
-              accumsan quis nisi a, facilisis eleifend nulla. Praesent aliquet odio non imperdiet
-              fringilla.</p>
-
-          </div>
-        </mat-tab>
-      </mat-tab-group>
     </mat-card>
+
     <mat-card>
       <mat-card-subtitle>Album</mat-card-subtitle>
       <mat-card-content>
