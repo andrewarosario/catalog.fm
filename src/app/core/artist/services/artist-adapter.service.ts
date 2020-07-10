@@ -18,8 +18,8 @@ export class ArtistAdapterService {
       tags: artist.tags.tag.map(t => t.name),
       onTour: !!+artist.ontour,
       biography: artist.bio.summary,
-      image: theAudioDbResponse.strArtistThumb,
-      imageWithLogo: theAudioDbResponse.strArtistWideThumb
+      image: theAudioDbResponse?.strArtistThumb,
+      imageWithLogo: theAudioDbResponse?.strArtistWideThumb
     };
   }
 }
