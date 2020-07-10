@@ -5,4 +5,6 @@ export interface Artist {
   tags: string[];
   onTour: boolean;
   biography: string;
+  image: string;
+  imageWithLogo: string;
 }

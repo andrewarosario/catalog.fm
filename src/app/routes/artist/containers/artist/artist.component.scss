@@ -12,7 +12,21 @@
 }
 
 .artist-image {
-  width: 100%;
+  width: 100%; /*container-width*/
+  overflow: hidden; /*hide bounds of image */
+  margin: 0;   /*reset margin of figure tag*/
+
+  & > img {
+    display: block; /*remove inline-block spaces*/
+   width: 100%; /*make image streatch*/
+   margin: -21.875% 0;
+  }
+}
+
+.artist-wide-image {
+  & > img {
+    width: 100%;
+  }
 }
 
 .artist-tag {
