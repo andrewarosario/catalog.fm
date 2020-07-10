@@ -19,7 +19,6 @@ export class ArtistFacade {
 
   public getArtist(name: string) {
     return this.artistService.get(name).pipe(
-      tap(console.log),
       tap(artist => this.artistSubject$.next(artist))
     );
   }
