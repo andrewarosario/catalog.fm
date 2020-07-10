@@ -11,4 +11,8 @@
     <mat-icon matListIcon>send</mat-icon>
     <span mat-line>Scrobblar Faixa</span>
   </a>
+  <a [routerLink]="['/artist', data.artist]" (click)="onClose.emit()" mat-list-item>
+    <mat-icon matListIcon>star_rate</mat-icon>
+    <span mat-line>Visualizar Artista</span>
+  </a>
 </mat-nav-list>

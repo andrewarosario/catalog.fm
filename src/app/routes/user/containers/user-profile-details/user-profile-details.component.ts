@@ -52,7 +52,7 @@ export class UserProfileDetailsComponent implements OnInit {
 
   public openTrackOptions(track: RecentTrack) {
     const ref = this.bottomSheet.open(BottomSheetInfoTrackComponent, { data: track });
-    ref.instance.onScrobble.pipe(take(1)).subscribe(() => ref.dismiss());
+    ref.instance.onClose.pipe(take(1)).subscribe(() => ref.dismiss());
   }
 
 }

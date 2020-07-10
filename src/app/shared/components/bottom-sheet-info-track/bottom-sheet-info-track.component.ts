@@ -9,16 +9,16 @@ import { ScrobbleMessageService } from '@core/scrobble/services/scrobble-message
 })
 export class BottomSheetInfoTrackComponent {
 
-  public onScrobble = new EventEmitter();
+  public onClose = new EventEmitter();
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: TrackModel,
-    private scrobbleMessageService: ScrobbleMessageService
+    private scrobbleMessageService: ScrobbleMessageService,
   ) {}
 
   public scrobble(): void {
     this.scrobbleMessageService.scrobble(this.data).subscribe(
-      res => this.onScrobble.emit()
+      res => this.onClose.emit()
     );
   }
 
