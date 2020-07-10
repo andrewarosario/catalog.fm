@@ -26,6 +26,11 @@ export class UserProfileFacade {
   ) {}
 
   public getUser(name: string) {
+
+    if (!this.verifyChangeUser(name)) {
+      return;
+    }
+
     this.getTopArtists(name).subscribe();
     this.getTopAlbums(name).subscribe();
     this.getTopTracks(name).subscribe();
@@ -67,6 +72,15 @@ export class UserProfileFacade {
 
   public setUser(profile: Profile) {
     this.profileSubject$.next(profile);
+  }
+
+  private verifyChangeUser(name: string): boolean {
+    const profile = this.profileSubject$.getValue();
+
+    if (!profile) {
+      return true;
+    }
+    return profile.name.toLowerCase() !== name.toLowerCase();
   }
 
 }
