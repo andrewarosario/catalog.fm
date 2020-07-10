@@ -20,8 +20,8 @@
             </button>
           </div>
           <mat-list-item *ngFor="let track of tracks">
-            <a matLine>{{ track.artist }}</a>
             <a matLine>{{ track.song }}</a>
+            <a matLine>{{ track.artist }}</a>
             <button mat-icon-button color="primary" (click)="facade.scrobbleAndRemoveFromCache(track)">
               <mat-icon>send</mat-icon>
             </button>
