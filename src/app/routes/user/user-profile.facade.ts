@@ -90,10 +90,6 @@ export class UserProfileFacade {
     );
   }
 
-  public setUser(profile: Profile) {
-    this.profileSubject$.next(profile);
-  }
-
   public setTabIndex(tabIndex: number) {
     this.selectedTabIndex = tabIndex;
   }
