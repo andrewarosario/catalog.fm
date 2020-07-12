@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { InfoResult } from '@core/profile/models/profile';
-import { PageEvent } from '@angular/material/paginator';
+
+interface LastfmPaginator {
+  limit: number;
+  page: number;
+}
 
 @Component({
   selector: 'app-lastfm-paginator',
@@ -10,7 +14,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class LastfmPaginatorComponent implements OnInit {
 
   @Input() info: InfoResult;
-  @Output() changePage = new EventEmitter<PageEvent>();
+  @Output() changePage = new EventEmitter<LastfmPaginator>();
   constructor() { }
 
   ngOnInit(): void {

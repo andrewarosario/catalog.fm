@@ -1,32 +1,29 @@
 <mat-card *ngIf="facade.profile$ | async as profile">
-  <mat-tab-group class="m--16">
+  <mat-tab-group #matTabGroup class="m--16" [selectedIndex]="facade.selectedTabIndex">
     <mat-tab label="Últimos Scrobbles">
       <app-user-recent-tracks
         [recentTracks]="facade.recentTracks$ | async"
         (openTrackInfo)="openTrackOptions($event)"
-        (changePage)="changeRecentTracksPagination(profile.name, $event)"
+        (change)="changeRecentTracks(profile.name, $event.limit, $event.page)"
       ></app-user-recent-tracks>
     </mat-tab>
     <mat-tab label="Artistas">
       <app-user-top-artists
         [topArtists]="facade.topArtists$ | async"
-        (changePeriod)="changeTopArtistsPeriod(profile.name, $event)"
-        (changePage)="changeTopArtistsPagination(profile.name, $event)"
+        (change)="changeTopArtists(profile.name, $event.limit, $event.page, $event.period)"
       ></app-user-top-artists>
     </mat-tab>
     <mat-tab label="Álbuns">
       <app-user-top-albums
         [topAlbums]="facade.topAlbums$ | async"
-        (changePeriod)="changeTopAlbumsPeriod(profile.name, $event)"
-        (changePage)="changeTopAlbumsPagination(profile.name, $event)"
+        (change)="changeTopAlbums(profile.name, $event.limit, $event.page, $event.period)"
       ></app-user-top-albums>
     </mat-tab>
     <mat-tab label="Faixas">
       <app-user-top-tracks
         [topTracks]="facade.topTracks$ | async"
         (openTrackInfo)="openTrackOptions($event)"
-        (changePeriod)="changeTopTracksPeriod(profile.name, $event)"
-        (changePage)="changeTopTracksPagination(profile.name, $event)"
+        (change)="changeTopTracks(profile.name, $event.limit, $event.page, $event.period)"
       ></app-user-top-tracks>
     </mat-tab>
   </mat-tab-group>

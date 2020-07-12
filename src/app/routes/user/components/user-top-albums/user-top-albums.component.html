@@ -1,7 +1,11 @@
 <ng-container *ngIf="topAlbums">
   <app-user-periods
     [info]="topAlbums.info"
-    (changePeriod)="changePeriod.emit($event)"
+    (changePeriod)="change.emit({
+      period: $event,
+      limit: topAlbums.info.perPage,
+      page: topAlbums.info.page
+    })"
   ></app-user-periods>
   <div class="item-thumbnails">
     <div class="grid">
@@ -18,7 +22,11 @@
     </div>
     <app-lastfm-paginator
       [info]="topAlbums.info"
-      (changePage)="changePage.emit($event)"
+      (changePage)="change.emit({
+        period: topAlbums.info.period,
+        limit: $event.limit,
+        page: $event.page
+      })"
     ></app-lastfm-paginator>
   </div>
 </ng-container>
