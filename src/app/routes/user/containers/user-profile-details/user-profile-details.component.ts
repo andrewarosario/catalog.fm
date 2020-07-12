@@ -36,16 +36,16 @@ export class UserProfileDetailsComponent implements OnDestroy {
     this.facade.getTopArtists(userName, userInfo).subscribe();
   }
 
-  public changeTopAlbums(userName: string, limit: number, page: number, period: PeriodLastfm) {
-    this.facade.getTopAlbums(userName, limit, page, period).subscribe();
+  public changeTopAlbums(userName: string, userInfo: UserInfo) {
+    this.facade.getTopAlbums(userName, userInfo).subscribe();
   }
 
-  public changeTopTracks(userName: string, limit: number, page: number, period: PeriodLastfm) {
-    this.facade.getTopTracks(userName, limit, page, period).subscribe();
+  public changeTopTracks(userName: string, userInfo: UserInfo) {
+    this.facade.getTopTracks(userName, userInfo).subscribe();
   }
 
-  public changeRecentTracks(userName: string, limit: number, page: number) {
-    this.facade.getRecentTracks(userName, limit, page).subscribe();
+  public changeRecentTracks(userName: string, userInfo: UserInfo) {
+    this.facade.getRecentTracks(userName, userInfo).subscribe();
   }
 
 }

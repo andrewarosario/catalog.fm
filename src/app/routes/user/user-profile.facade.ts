@@ -41,11 +41,22 @@ export class UserProfileFacade {
       page: 1,
       period: profileItens.topArtistsPeriod
     }).subscribe();
-    this.getTopAlbums(name, profileItens.topAlbumsLimit, 1, profileItens.topAlbumsPeriod).subscribe();
-    this.getTopTracks(name, profileItens.topTracksLimit, 1, profileItens.topTracksPeriod).subscribe();
+    this.getTopAlbums(name, {
+      limit: profileItens.topAlbumsLimit,
+      page: 1,
+      period: profileItens.topAlbumsPeriod
+    }).subscribe();
+    this.getTopTracks(name, {
+      limit: profileItens.topTracksLimit,
+      page: 1,
+      period: profileItens.topTracksPeriod
+    }).subscribe();
 
     return this.getInfoUser(name).pipe(
-      switchMap(() => this.getRecentTracks(name, profileItens.recentTracksLimit, 1)),
+      switchMap(() => this.getRecentTracks(name, {
+        limit: profileItens.recentTracksLimit,
+        page: 1
+      })),
     );
   }
 
@@ -55,7 +66,7 @@ export class UserProfileFacade {
     );
   }
 
-  public getRecentTracks(name: string, limit = 20, page = 1): Observable<ProfileRecentTracks> {
+  public getRecentTracks(name: string, { limit, page }: UserInfo): Observable<ProfileRecentTracks> {
     return this.profileService.getRecentTracks(name, limit, page).pipe(
       tap(recent => this.recentTracksSubject$.next(recent))
     );
@@ -67,13 +78,13 @@ export class UserProfileFacade {
     );
   }
 
-  public getTopAlbums(name: string, limit = 10, page = 1, period = PeriodLastfm.OneMonth): Observable<ProfileTopAlbums> {
+  public getTopAlbums(name: string, { limit, page, period }: UserInfo): Observable<ProfileTopAlbums> {
     return this.profileService.getTopAlbums(name, limit, page, period).pipe(
       tap(albums => this.topAlbumsSubject$.next(albums))
     );
   }
 
-  public getTopTracks(name: string, limit = 10, page = 1, period = PeriodLastfm.OneMonth): Observable<ProfileTopTracks> {
+  public getTopTracks(name: string, { limit, page, period }: UserInfo): Observable<ProfileTopTracks> {
     return this.profileService.getTopTracks(name, limit, page, period).pipe(
       tap(tracks => this.topTracksSubject$.next(tracks))
     );

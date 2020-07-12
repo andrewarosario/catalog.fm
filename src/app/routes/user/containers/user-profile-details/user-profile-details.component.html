@@ -4,7 +4,7 @@
       <app-user-recent-tracks
         [recentTracks]="facade.recentTracks$ | async"
         (openTrackInfo)="openTrackOptions($event)"
-        (change)="changeRecentTracks(profile.name, $event.limit, $event.page)"
+        (change)="changeRecentTracks(profile.name, $event)"
       ></app-user-recent-tracks>
     </mat-tab>
     <mat-tab label="Artistas">
@@ -16,14 +16,14 @@
     <mat-tab label="Álbuns">
       <app-user-top-albums
         [topAlbums]="facade.topAlbums$ | async"
-        (change)="changeTopAlbums(profile.name, $event.limit, $event.page, $event.period)"
+        (change)="changeTopAlbums(profile.name, $event)"
       ></app-user-top-albums>
     </mat-tab>
     <mat-tab label="Faixas">
       <app-user-top-tracks
         [topTracks]="facade.topTracks$ | async"
         (openTrackInfo)="openTrackOptions($event)"
-        (change)="changeTopTracks(profile.name, $event.limit, $event.page, $event.period)"
+        (change)="changeTopTracks(profile.name, $event)"
       ></app-user-top-tracks>
     </mat-tab>
   </mat-tab-group>
