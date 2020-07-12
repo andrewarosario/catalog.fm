@@ -10,7 +10,7 @@
     <mat-tab label="Artistas">
       <app-user-top-artists
         [topArtists]="facade.topArtists$ | async"
-        (change)="changeTopArtists(profile.name, $event.limit, $event.page, $event.period)"
+        (change)="changeTopArtists(profile.name, $event)"
       ></app-user-top-artists>
     </mat-tab>
     <mat-tab label="Álbuns">

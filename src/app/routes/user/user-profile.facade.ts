@@ -5,6 +5,7 @@ import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, Prof
 import { Observable, BehaviorSubject } from 'rxjs';
 import { PeriodLastfm } from '@core/lastfm/models/periods';
 import { UserProfileItensService } from './services/user-profile-itens.service';
+import { UserInfo } from './interfaces/user-resources';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,11 @@ export class UserProfileFacade {
     }
     const profileItens = this.userProfileItensService.profileItens;
 
-    this.getTopArtists(name, profileItens.topArtistsLimit, 1, profileItens.topArtistsPeriod).subscribe();
+    this.getTopArtists(name, {
+      limit: profileItens.topArtistsLimit,
+      page: 1,
+      period: profileItens.topArtistsPeriod
+    }).subscribe();
     this.getTopAlbums(name, profileItens.topAlbumsLimit, 1, profileItens.topAlbumsPeriod).subscribe();
     this.getTopTracks(name, profileItens.topTracksLimit, 1, profileItens.topTracksPeriod).subscribe();
 
@@ -56,7 +61,7 @@ export class UserProfileFacade {
     );
   }
 
-  public getTopArtists(name: string, limit = 10, page = 1, period = PeriodLastfm.Week): Observable<ProfileTopArtists> {
+  public getTopArtists(name: string, { limit, page, period }: UserInfo ): Observable<ProfileTopArtists> {
     return this.profileService.getTopArtists(name, limit, page, period).pipe(
       tap(albums => this.topArtistsSubject$.next(albums))
     );

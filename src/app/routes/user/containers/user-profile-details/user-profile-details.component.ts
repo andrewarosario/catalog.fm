@@ -6,6 +6,7 @@ import { RecentTrack } from '@core/profile/models/profile';
 import { take } from 'rxjs/operators';
 import { PeriodLastfm } from '@core/lastfm/models/periods';
 import { MatTabGroup } from '@angular/material/tabs';
+import { UserInfo } from '../../interfaces/user-resources';
 
 @Component({
   selector: 'app-user-profile-details',
@@ -31,8 +32,8 @@ export class UserProfileDetailsComponent implements OnDestroy {
     ref.instance.onClose.pipe(take(1)).subscribe(() => ref.dismiss());
   }
 
-  public changeTopArtists(userName: string, limit: number, page: number, period: PeriodLastfm) {
-    this.facade.getTopArtists(userName, limit, page, period).subscribe();
+  public changeTopArtists(userName: string, userInfo: UserInfo) {
+    this.facade.getTopArtists(userName, userInfo).subscribe();
   }
 
   public changeTopAlbums(userName: string, limit: number, page: number, period: PeriodLastfm) {
