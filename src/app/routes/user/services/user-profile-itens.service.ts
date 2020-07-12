@@ -28,8 +28,6 @@ const profileItensDefault: ProfileItens = {
 })
 export class UserProfileItensService {
   public profileItens = profileItensDefault;
-  private profileItensSubject$ = new BehaviorSubject<ProfileItens>(profileItensDefault);
-  public profileItens$ = this.profileItensSubject$.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {
     this.profileItens = this.getItens();
