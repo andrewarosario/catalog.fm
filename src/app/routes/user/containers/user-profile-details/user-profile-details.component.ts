@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { UserProfileFacade } from '../../user-profile.facade';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetInfoTrackComponent } from '@shared/components/bottom-sheet-info-track/bottom-sheet-info-track.component';
@@ -12,7 +12,7 @@ import { MatTabGroup } from '@angular/material/tabs';
   templateUrl: './user-profile-details.component.html',
   styleUrls: ['./user-profile-details.component.scss']
 })
-export class UserProfileDetailsComponent implements OnInit, OnDestroy {
+export class UserProfileDetailsComponent implements OnDestroy {
 
   @ViewChild('matTabGroup') matTabGroup: MatTabGroup;
 
@@ -21,11 +21,9 @@ export class UserProfileDetailsComponent implements OnInit, OnDestroy {
     private bottomSheet: MatBottomSheet
   ) { }
 
-  ngOnInit(): void {
-  }
-
   ngOnDestroy(): void {
     this.facade.setTabIndex(this.matTabGroup.selectedIndex);
+    this.facade.setProfileItens();
   }
 
   public openTrackOptions(track: RecentTrack) {

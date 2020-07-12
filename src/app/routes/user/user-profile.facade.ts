@@ -4,6 +4,7 @@ import { tap, switchMap } from 'rxjs/operators';
 import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/profile/models/profile';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { PeriodLastfm } from '@core/lastfm/models/periods';
+import { UserProfileItensService } from './services/user-profile-itens.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,11 @@ export class UserProfileFacade {
   public topAlbums$ = this.topAlbumsSubject$.asObservable();
   private topTracksSubject$ = new BehaviorSubject<ProfileTopTracks>(null);
   public topTracks$ = this.topTracksSubject$.asObservable();
+  public selectedTabIndex = 0;
 
   constructor(
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private userProfileItensService: UserProfileItensService
   ) {}
 
   public getUser(name: string) {
@@ -30,13 +33,14 @@ export class UserProfileFacade {
     if (!this.verifyChangeUser(name)) {
       return;
     }
+    const profileItens = this.userProfileItensService.profileItens;
 
-    this.getTopArtists(name).subscribe();
-    this.getTopAlbums(name).subscribe();
-    this.getTopTracks(name).subscribe();
+    this.getTopArtists(name, profileItens.topArtistsLimit, 1, profileItens.topArtistsPeriod).subscribe();
+    this.getTopAlbums(name, profileItens.topAlbumsLimit, 1, profileItens.topAlbumsPeriod).subscribe();
+    this.getTopTracks(name, profileItens.topTracksLimit, 1, profileItens.topTracksPeriod).subscribe();
 
     return this.getInfoUser(name).pipe(
-      switchMap(() => this.getRecentTracks(name)),
+      switchMap(() => this.getRecentTracks(name, profileItens.recentTracksLimit, 1)),
     );
   }
 
@@ -72,6 +76,23 @@ export class UserProfileFacade {
 
   public setUser(profile: Profile) {
     this.profileSubject$.next(profile);
+  }
+
+  public setTabIndex(tabIndex: number) {
+    this.selectedTabIndex = tabIndex;
+  }
+
+  public setProfileItens() {
+    this.userProfileItensService.setItens({
+      recentTracksLimit: +this.recentTracksSubject$.getValue().info.perPage,
+      topTracksLimit: +this.topTracksSubject$.getValue().info.perPage,
+      topAlbumsLimit: +this.topAlbumsSubject$.getValue().info.perPage,
+      topArtistsLimit: +this.topArtistsSubject$.getValue().info.perPage,
+      topTracksPeriod: this.topTracksSubject$.getValue().info.period,
+      topAlbumsPeriod: this.topAlbumsSubject$.getValue().info.period,
+      topArtistsPeriod: this.topArtistsSubject$.getValue().info.period,
+
+    });
   }
 
   private verifyChangeUser(name: string): boolean {
