@@ -3,7 +3,6 @@ import { ProfileService } from '@core/profile/services/profile.service';
 import { tap, switchMap } from 'rxjs/operators';
 import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/profile/models/profile';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { PeriodLastfm } from '@core/lastfm/models/periods';
 import { UserProfileItensService } from './services/user-profile-itens.service';
 import { UserInfo } from './interfaces/user-resources';
 
@@ -34,29 +33,13 @@ export class UserProfileFacade {
     if (!this.verifyChangeUser(name)) {
       return;
     }
-    const profileItens = this.userProfileItensService.profileItens;
 
-    this.getTopArtists(name, {
-      limit: profileItens.topArtistsLimit,
-      page: 1,
-      period: profileItens.topArtistsPeriod
-    }).subscribe();
-    this.getTopAlbums(name, {
-      limit: profileItens.topAlbumsLimit,
-      page: 1,
-      period: profileItens.topAlbumsPeriod
-    }).subscribe();
-    this.getTopTracks(name, {
-      limit: profileItens.topTracksLimit,
-      page: 1,
-      period: profileItens.topTracksPeriod
-    }).subscribe();
+    this.getTopArtists(name, this.userProfileItensService.makeTopArtistsParams()).subscribe();
+    this.getTopAlbums(name, this.userProfileItensService.makeTopAlbumsParams()).subscribe();
+    this.getTopTracks(name, this.userProfileItensService.makeTopTracksParams()).subscribe();
 
     return this.getInfoUser(name).pipe(
-      switchMap(() => this.getRecentTracks(name, {
-        limit: profileItens.recentTracksLimit,
-        page: 1
-      })),
+      switchMap(() => this.getRecentTracks(name, this.userProfileItensService.makeRecentTracksParams())),
     );
   }
 

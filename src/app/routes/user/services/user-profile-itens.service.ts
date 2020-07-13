@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { PeriodLastfm } from '@core/lastfm/models/periods';
 import { LocalStorageService } from '@shared/services/local-storage.service';
+import { UserInfo } from '../interfaces/user-resources';
 
 export interface ProfileItens {
   recentTracksLimit: number;
@@ -27,7 +27,7 @@ const profileItensDefault: ProfileItens = {
   providedIn: 'root'
 })
 export class UserProfileItensService {
-  public profileItens = profileItensDefault;
+  private profileItens = profileItensDefault;
 
   constructor(private localStorageService: LocalStorageService) {
     this.profileItens = this.getItens();
@@ -42,5 +42,32 @@ export class UserProfileItensService {
 
   public setItens(profileItens: ProfileItens) {
     this.localStorageService.setKey('profile-itens', JSON.stringify(profileItens));
+  }
+
+  public makeTopArtistsParams(): UserInfo {
+    return { limit: this.profileItens.topArtistsLimit,
+      page: 1,
+      period: this.profileItens.topArtistsPeriod
+    };
+  }
+
+  public makeTopAlbumsParams(): UserInfo {
+    return { limit: this.profileItens.topAlbumsLimit,
+      page: 1,
+      period: this.profileItens.topAlbumsPeriod
+    };
+  }
+
+  public makeTopTracksParams(): UserInfo {
+    return { limit: this.profileItens.topTracksLimit,
+      page: 1,
+      period: this.profileItens.topTracksPeriod
+    };
+  }
+
+  public makeRecentTracksParams(): UserInfo {
+    return { limit: this.profileItens.recentTracksLimit,
+      page: 1,
+    };
   }
 }
