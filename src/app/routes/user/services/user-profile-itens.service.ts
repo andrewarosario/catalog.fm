@@ -45,28 +45,32 @@ export class UserProfileItensService {
   }
 
   public makeTopArtistsParams(): UserInfo {
-    return { limit: this.profileItens.topArtistsLimit,
+    return {
+      limit: this.profileItens.topArtistsLimit,
       page: 1,
       period: this.profileItens.topArtistsPeriod
     };
   }
 
   public makeTopAlbumsParams(): UserInfo {
-    return { limit: this.profileItens.topAlbumsLimit,
+    return {
+      limit: this.profileItens.topAlbumsLimit,
       page: 1,
       period: this.profileItens.topAlbumsPeriod
     };
   }
 
   public makeTopTracksParams(): UserInfo {
-    return { limit: this.profileItens.topTracksLimit,
+    return {
+      limit: this.profileItens.topTracksLimit,
       page: 1,
       period: this.profileItens.topTracksPeriod
     };
   }
 
   public makeRecentTracksParams(): UserInfo {
-    return { limit: this.profileItens.recentTracksLimit,
+    return {
+      limit: this.profileItens.recentTracksLimit,
       page: 1,
     };
   }
