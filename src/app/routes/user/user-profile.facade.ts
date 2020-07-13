@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ProfileService } from '@core/profile/services/profile.service';
 import { tap, switchMap } from 'rxjs/operators';
 import { Profile, ProfileRecentTracks, ProfileTopAlbums, ProfileTopArtists, ProfileTopTracks } from '@core/profile/models/profile';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, merge } from 'rxjs';
 import { UserProfileItensService } from './services/user-profile-itens.service';
 import { UserInfo } from './interfaces/user-resources';
 
@@ -34,9 +34,11 @@ export class UserProfileFacade {
       return;
     }
 
-    this.getTopArtists(name, this.userProfileItensService.makeTopArtistsParams()).subscribe();
-    this.getTopAlbums(name, this.userProfileItensService.makeTopAlbumsParams()).subscribe();
-    this.getTopTracks(name, this.userProfileItensService.makeTopTracksParams()).subscribe();
+    merge(
+      this.getTopArtists(name, this.userProfileItensService.makeTopArtistsParams()),
+      this.getTopAlbums(name, this.userProfileItensService.makeTopAlbumsParams()),
+      this.getTopTracks(name, this.userProfileItensService.makeTopTracksParams()),
+    ).subscribe();
 
     return this.getInfoUser(name).pipe(
       switchMap(() => this.getRecentTracks(name, this.userProfileItensService.makeRecentTracksParams())),
