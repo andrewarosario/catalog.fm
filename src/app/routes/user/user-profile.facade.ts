@@ -12,14 +12,14 @@ import { UserInfo } from './interfaces/user-resources';
 export class UserProfileFacade {
 
   private profileSubject$ = new BehaviorSubject<Profile>(null);
-  public profile$ = this.profileSubject$.asObservable();
   private recentTracksSubject$ = new BehaviorSubject<ProfileRecentTracks>(null);
-  public recentTracks$ = this.recentTracksSubject$.asObservable();
   private topArtistsSubject$ = new BehaviorSubject<ProfileTopArtists>(null);
-  public topArtists$ = this.topArtistsSubject$.asObservable();
   private topAlbumsSubject$ = new BehaviorSubject<ProfileTopAlbums>(null);
-  public topAlbums$ = this.topAlbumsSubject$.asObservable();
   private topTracksSubject$ = new BehaviorSubject<ProfileTopTracks>(null);
+  public profile$ = this.profileSubject$.asObservable();
+  public recentTracks$ = this.recentTracksSubject$.asObservable();
+  public topArtists$ = this.topArtistsSubject$.asObservable();
+  public topAlbums$ = this.topAlbumsSubject$.asObservable();
   public topTracks$ = this.topTracksSubject$.asObservable();
   public selectedTabIndex = 0;
 
@@ -42,12 +42,6 @@ export class UserProfileFacade {
 
     return this.getInfoUser(name).pipe(
       switchMap(() => this.getRecentTracks(name, this.userProfileItensService.makeRecentTracksParams())),
-    );
-  }
-
-  public getInfoUser(name: string): Observable<Profile> {
-    return this.profileService.get(name).pipe(
-      tap(profile => this.profileSubject$.next(profile))
     );
   }
 
@@ -99,6 +93,12 @@ export class UserProfileFacade {
       return true;
     }
     return profile.name.toLowerCase() !== name.toLowerCase();
+  }
+
+  private getInfoUser(name: string): Observable<Profile> {
+    return this.profileService.get(name).pipe(
+      tap(profile => this.profileSubject$.next(profile))
+    );
   }
 
 }
