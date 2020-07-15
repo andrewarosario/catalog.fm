@@ -3,9 +3,8 @@ import { LastfmUserService } from '@core/lastfm/services/lastfm-user.service';
 import { UserService } from '@core/user/services/user.service';
 import * as moment from 'moment';
 import { IndexedDbScrobbles } from '@core/indexed-db/tables/indexed-db-scrobbles';
-import { mapTo, switchMap, tap, filter } from 'rxjs/operators';
-import { Observable, forkJoin } from 'rxjs';
-import { MessageService } from '@shared/services/message.service';
+import { mapTo } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { AuthOnlineService } from '@core/auth/auth-online.service';
 import { ScrobbleResponseType } from '@core/scrobble/models/scrobble-response-type';
 
@@ -19,10 +18,7 @@ export class ScrobbleService {
     private lastfmUserService: LastfmUserService,
     private indexedDbScrobbles: IndexedDbScrobbles,
     private authOnlineService: AuthOnlineService,
-    private messageService: MessageService
-  ) {
-    this.sendScrobblesInCache();
-  }
+  ) {}
 
   public scrobble(track: TrackScrobble): Observable<ScrobbleResponseType> {
     return this.authOnlineService.isLogged()
@@ -41,25 +37,4 @@ export class ScrobbleService {
       .add(track)
       .pipe(mapTo(ScrobbleResponseType.IndexedDb));
   }
-
-  private sendScrobblesInCache() {
-    this.authOnlineService.isLogged$().pipe(
-      filter(isLogged => isLogged),
-      switchMap(() => this.indexedDbScrobbles.getAll()),
-      filter(tracks => !!tracks.length),
-      switchMap(scrobbles => forkJoin(scrobbles.map(track => this.scrobbleToLastfm(track)))),
-      tap(() => this.indexedDbScrobbles.clear())
-    )
-    .subscribe(scrobbledTracks => {
-      const tracksLength = scrobbledTracks.length;
-
-      const textResponse = `${tracksLength} ${tracksLength > 1
-        ? 'faixas foram scrobbladas'
-        : 'faixa foi scrobblada'} do cache`;
-
-      this.messageService.open(textResponse);
-    });
-  }
-
-
 }
