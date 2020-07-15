@@ -17,3 +17,7 @@ $position: (
 );
 
 $utilities: map-merge($position, $utilities);
+
+.margin-auto {
+  margin: auto;
+}

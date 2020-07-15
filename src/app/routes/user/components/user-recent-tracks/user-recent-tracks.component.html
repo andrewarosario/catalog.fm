@@ -1,5 +1,6 @@
 <div class="m-16">
-  <mat-list>
+  <mat-spinner *ngIf="!recentTracks" class="margin-auto"></mat-spinner>
+  <mat-list *ngIf="recentTracks">
     <mat-list-item class="add-cursor-pointer" *ngFor="let track of recentTracks.tracks" (click)="openTrackInfo.emit(track)">
       <img [src]="track.albumImage" [alt]="track.album">
       <div mat-line> {{ track.song }} </div>
