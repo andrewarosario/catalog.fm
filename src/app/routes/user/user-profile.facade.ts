@@ -28,21 +28,20 @@ export class UserProfileFacade {
     private userProfileItensService: UserProfileItensService
   ) {}
 
-  public getUser(name: string) {
+  public getUser(name: string): Observable<Profile> {
 
     if (!this.verifyChangeUser(name)) {
       return;
     }
 
     merge(
+      this.getRecentTracks(name, this.userProfileItensService.makeRecentTracksParams()),
       this.getTopArtists(name, this.userProfileItensService.makeTopArtistsParams()),
       this.getTopAlbums(name, this.userProfileItensService.makeTopAlbumsParams()),
       this.getTopTracks(name, this.userProfileItensService.makeTopTracksParams()),
     ).subscribe();
 
-    return this.getInfoUser(name).pipe(
-      switchMap(() => this.getRecentTracks(name, this.userProfileItensService.makeRecentTracksParams())),
-    );
+    return this.getInfoUser(name);
   }
 
   public getRecentTracks(name: string, { limit, page }: UserInfo): Observable<ProfileRecentTracks> {
