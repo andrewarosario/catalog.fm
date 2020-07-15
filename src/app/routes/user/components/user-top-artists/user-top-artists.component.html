@@ -1,4 +1,4 @@
-<ng-container *ngIf="topArtists">
+<ng-container *ngIf="topArtists; else loading">
   <app-user-periods
     [info]="topArtists.info"
     (changePeriod)="change.emit({
@@ -31,3 +31,7 @@
     ></app-lastfm-paginator>
   </div>
 </ng-container>
+
+<ng-template #loading>
+  <mat-spinner class="margin-auto"></mat-spinner>
+</ng-template>
