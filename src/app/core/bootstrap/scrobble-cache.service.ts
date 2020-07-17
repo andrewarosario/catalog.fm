@@ -22,9 +22,7 @@ export class ScrobbleCacheService {
   public listenSendScrobblesInCache() {
     this.authOnlineService.isLogged$().pipe(
       filter(isLogged => isLogged),
-      tap(() => console.log('ta logado')),
       switchMap(() => this.indexedDbScrobbles.getAll()),
-      tap((tracks) => console.log(tracks)),
       filter(tracks => !!tracks.length),
       switchMap(scrobbles => forkJoin(scrobbles.map(track => this.scrobbleService.scrobbleToLastfm(track)))),
       tap(() => this.indexedDbScrobbles.clear())
