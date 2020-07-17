@@ -31,9 +31,9 @@
       "name": "lastfm-api",
       "cacheConfig": {
         "strategy": "freshness",
-        "maxAge": "6h",
+        "maxAge": "7d",
         "maxSize": 10000,
-        "timeout": "5s"
+        "timeout": "0u"
       },
       "urls": [
         "https://ws.audioscrobbler.com/2.0/**"
