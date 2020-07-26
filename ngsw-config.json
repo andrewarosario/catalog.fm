@@ -33,7 +33,7 @@
         "strategy": "freshness",
         "maxAge": "7d",
         "maxSize": 10000,
-        "timeout": "0u"
+        "timeout": "5s"
       },
       "urls": [
         "https://ws.audioscrobbler.com/2.0/**"
